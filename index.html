@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day N Night | Natural Male Performance Supplement</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  body{background:#fff;color:#111}
+  header{background:#fff;border-bottom:1px solid #eee;padding:18px 0;position:sticky;top:0;z-index:100}
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+  .header-inner{display:flex;justify-content:space-between;align-items:center}
+  .logo{font-size:24px;font-weight:700}
+
+  .hero{padding:70px 0;background:#fcfcfc}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .hero-img img{width:100%;border-radius:16px}
+  .hero-content h1{font-size:40px;line-height:1.2;margin-bottom:20px}
+  .hero-desc{font-size:18px;color:#444;margin-bottom:24px}
+  .price{font-size:34px;font-weight:700;color:#b91c1c;margin-bottom:24px}
+
+  .variant-box{border:1px solid #ddd;padding:18px;border-radius:12px;margin-bottom:12px;cursor:pointer}
+  .variant-box.selected{border-color:#000;background:#f8f8f8}
+  .variant-row{display:flex;justify-content:space-between;align-items:center}
+  .variant-name{font-weight:600}
+  .variant-price{font-weight:700;color:#b91c1c}
+
+  .buttons{display:flex;gap:14px;margin-top:28px}
+  .btn{flex:1;padding:18px;border-radius:12px;font-size:16px;font-weight:600;border:none;cursor:pointer}
+  .btn-primary{background:#000;color:#fff}
+  .btn-secondary{background:#fff;color:#000;border:1px solid #000}
+
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .badge{background:#f3f4f6;padding:8px 14px;border-radius:20px;font-size:12px}
+
+  .section{padding:80px 0}
+  .section-title{text-align:center;font-size:32px;margin-bottom:50px}
+
+  .benefits-list li{font-size:17px;margin-bottom:14px;list-style:none;padding-left:26px;position:relative}
+  .benefits-list li:before{content:"✅";position:absolute;left:0}
+
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+  .feature h3{font-size:18px;margin-bottom:10px}
+  .feature p{color:#555}
+
+  .ingredients{background:#f9f9f9}
+  .ingredients-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+
+  .dosage-box{background:#fff;border:1px solid #eee;border-radius:16px;padding:36px}
+  .warning{color:#b91c1c;font-weight:600}
+
+  /* ========== 评价区域样式 ========== */
+  .reviews{text-align:center}
+  .stars{font-size:22px;color:#f59e0b;margin-bottom:10px}
+  .review-score{font-size:22px;font-weight:700;margin:10px 0;color:#111}
+  .review-total{font-size:16px;color:#555;margin-bottom:30px}
+
+  .review-list{max-width:900px;margin:0 auto}
+  .review-item{background:#f9f9f9;padding:24px;border-radius:14px;margin-bottom:16px;text-align:left}
+  .review-stars{color:#f59e0b;font-size:16px;margin-bottom:8px}
+  .review-name{font-weight:600;font-size:16px;margin-bottom:6px}
+  .review-text{font-size:16px;line-height:1.6;color:#333}
+
+  .review-hidden{display:none}
+  .load-more-btn{background:#fff;color:#000;border:2px solid #000;padding:16px 32px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px}
+  .load-more-btn:hover{background:#000;color:#fff}
+
+  .footer{background:#000;color:#fff;padding:60px 0 20px}
+  .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+  .footer-col h4{margin-bottom:16px;font-size:16px}
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:10px;font-size:14px;color:#ccc}
+  .copyright{text-align:center;padding-top:30px;margin-top:40px;border-top:1px solid #333;color:#777}
+
+  @media(max-width:768px){
+    .hero-grid{grid-template-columns:1fr}
+    .features-grid{grid-template-columns:1fr}
+    .ingredients-inner{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    .buttons{flex-direction:column}
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">Day N Night</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-img">
+      <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/34fca9d622944718987d299c1d7d8700.jpeg" alt="Day N Night Male Supplement">
+    </div>
+    <div class="hero-content">
+      <h1>Day N Night<br>Natural Male Performance Supplement</h1>
+      <p class="hero-desc">
+        Powerful herbal formula to boost stamina, enhance performance, increase energy and support male vitality.
+        Effects last up to 48 hours.
+      </p>
+      <div class="price" id="total-price">£198.00</div>
+
+      <div class="variant-box selected" data-price="198">
+        <div class="variant-row">
+          <span class="variant-name">Starter Pack (1 Box)</span>
+          <span class="variant-price">£198.00</span>
+        </div>
+      </div>
+      <div class="variant-box" data-price="360">
+        <div class="variant-row">
+          <span class="variant-name">Popular Pack (2 Boxes)</span>
+          <span class="variant-price">£360.00</span>
+        </div>
+      </div>
+      <div class="variant-box" data-price="568">
+        <div class="variant-row">
+          <span class="variant-name">Ultimate Pack (3 Boxes)</span>
+          <span class="variant-price">£568.00</span>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="btn btn-primary" id="buynow">BUY NOW</button>
+        <button class="btn btn-secondary">ADD TO CART</button>
+      </div>
+
+      <div class="badges">
+        <span class="badge">100% Natural</span>
+        <span class="badge">No Side Effects</span>
+        <span class="badge">Discreet Shipping</span>
+        <span class="badge">UK Free Delivery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Key Benefits</h2>
+    <ul class="benefits-list">
+      <li>Boost male libido, desire and confidence</li>
+      <li>Enhance stamina, energy and overall performance</li>
+      <li>Support stronger, longer-lasting results</li>
+      <li>Promote blood flow and physical vitality</li>
+      <li>100% natural herbal ingredients, no chemicals</li>
+      <li>Works within 30 minutes, lasts up to 48 hours</li>
+      <li>Discreet packaging & fast UK delivery</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Why Choose Day N Night</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>Natural Formula</h3>
+        <p>Made with Maca, Tongkat Ali, Horny Goat Weed and traditional herbs.</p>
+      </div>
+      <div class="feature">
+        <h3>High Strength</h3>
+        <p>Potent dose for fast, real and long-lasting effects.</p>
+      </div>
+      <div class="feature">
+        <h3>Safe & Reliable</h3>
+        <p>No known side effects when used as directed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ingredients">
+  <div class="container">
+    <h2 class="section-title">Key Ingredients</h2>
+    <div class="ingredients-inner">
+      <div>
+        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/34fca9d622944718987d299c1d7d8700.jpeg" style="width:100%;border-radius:16px">
+      </div>
+      <div>
+        <h3>Powerful Herbal Blend</h3><br>
+        <p><strong>Maca Root Extract</strong> – Boosts libido & energy</p><br>
+        <p><strong>Tongkat Ali</strong> – Improves stamina & vitality</p><br>
+        <p><strong>Horny Goat Weed</strong> – Enhances performance</p><br>
+        <p><strong>Ginseng</strong> – Supports energy & blood flow</p><br>
+        <p><strong>Oyster Extract</strong> – Rich in zinc for male health</p><br>
+        <p>No fillers, no artificial additives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">How To Use</h2>
+    <div class="dosage-box">
+      <p style="font-size:18px"><strong>Dosage:</strong> Take 1 capsule 30 minutes before activity.</p><br>
+      <p style="font-size:18px">Do not take more than 1 capsule within 24 hours.</p><br>
+      <p class="warning" style="margin-top:20px">⚠️ Not for people with heart conditions or high blood pressure.</p>
+      <p class="warning">⚠️ Not for use by anyone under 18.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 【完整升级：客户评价区】 ===================== -->
+<section class="section reviews">
+  <div class="container">
+    <h2 class="section-title">Customer Feedback</h2>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    <div class="review-score">4.9 / 5</div>
+    <div class="review-total">Based on 247+ real UK customer reviews</div>
+
+    <div class="review-list" id="reviewList">
+      <!-- 显示 5 条 -->
+      <div class="review-item">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-name">James M., London</div>
+        <div class="review-text">This product is incredible. I felt the difference within 30 minutes, energy levels went through the roof and performance was next level. Lasted me two full days. Highly recommend!</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-name">Daniel K., Manchester</div>
+        <div class="review-text">Been using for 3 weeks, no side effects at all. Stamina is way better, confidence is back. Discreet delivery and great quality. Worth every penny.</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-name">Tom S., Birmingham</div>
+        <div class="review-text">Natural ingredients, works fast, long lasting. I’ve tried many supplements but Day N Night beats them all. My partner noticed the difference immediately.</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-name">Jordan P., Leeds</div>
+        <div class="review-text">Fast shipping, great packaging, and the effects are real. No jitters, no headaches, just smooth energy and improved performance. 10/10.</div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-name">Mark R., Liverpool</div>
+        <div class="review-text">Absolutely life changing. I feel younger, stronger and more energetic. This herbal blend is powerful and safe. Will order again.</div>
+      </div>
+
+      <!-- 隐藏剩余评价，点击查看全部才显示 -->
+      <div class="review-hidden" id="moreReviews">
+        <div class="review-item">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <div class="review-name">Ben T., Glasgow</div>
+          <div class="review-text">Works exactly as described. Lasted 48 hours, no side effects, great energy boost. Very happy customer.</div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <div class="review-name">Ryan G., Newcastle</div>
+          <div class="review-text">Great product, natural formula, fast results. My energy and stamina improved so much. Highly recommend to any man.</div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <div class="review-name">Alex W., Bristol</div>
+          <div class="review-text">I was skeptical at first, but this works amazingly. Results came fast and lasted a long time. Very discreet service.</div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <div class="review-name">Sam D., Nottingham</div>
+          <div class="review-text">100% natural, no chemicals, no side effects. This is the real deal. My performance and confidence have improved so much.</div>
+        </div>
+
+        <div class="review-item">
+          <div class="review-stars">⭐⭐⭐⭐⭐</div>
+          <div class="review-name">Owen L., Sheffield</div>
+          <div class="review-text">Fast delivery, great product, works within 30 minutes. I will definitely reorder. Best supplement I’ve ever used.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 查看全部按钮 -->
+    <button class="load-more-btn" id="loadMoreBtn">View All Reviews</button>
+  </div>
+</section>
+<!-- ===================== 【评价区结束】 ===================== -->
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li>All Products</li>
+        <li>Best Sellers</li>
+        <li>Special Offers</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li>Contact Us</li>
+        <li>Shipping Info</li>
+        <li>FAQ</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li>About Us</li>
+        <li>Privacy Policy</li>
+        <li>Disclaimer</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>WhatsApp Support</li>
+        <li>Email Service</li>
+        <li>Discreet Support</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container copyright">
+    © 2025 Day N Night. All rights reserved.<br>
+    This product is not intended to diagnose, treat, cure, or prevent any disease.
+  </div>
+</footer>
+
+<script>
+  // 选择套餐
+  const variants = document.querySelectorAll('.variant-box');
+  const priceDisplay = document.getElementById('total-price');
+  let currentPrice = '198';
+
+  variants.forEach(v => {
+    v.addEventListener('click', () => {
+      variants.forEach(x => x.classList.remove('selected'));
+      v.classList.add('selected');
+      currentPrice = v.dataset.price;
+      priceDisplay.textContent = `£${currentPrice}.00`;
+    })
+  })
+
+  // 购买跳转 Google Forms
+  document.getElementById('buynow').addEventListener('click', () => {
+    const form = "https://docs.google.com/forms/d/e/1FAIpQLSe5n0S6J22GsrX9lVv9kHjCk_zHltF2k1VqZvV8tRvXQpW5dA/viewform?entry.1205090130=" + currentPrice;
+    window.open(form, '_blank');
+  });
+
+  // ========== 查看全部评价功能 ==========
+  const moreReviews = document.getElementById('moreReviews');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  let isOpen = false;
+
+  loadMoreBtn.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      moreReviews.style.display = 'block';
+      loadMoreBtn.textContent = 'Hide Reviews';
+    } else {
+      moreReviews.style.display = 'none';
+      loadMoreBtn.textContent = 'View All Reviews';
+    }
+  });
+</script>
+
+</body>
+</html>
