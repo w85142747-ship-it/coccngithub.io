@@ -6,7 +6,7 @@
 <title>Day N Night | Natural Male Performance Supplement</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  body{background:#fff;color:#111}
+  body{background:#fff;color:#111;scroll-behavior: smooth;} /* 平滑滚动 */
   header{background:#fff;border-bottom:1px solid #eee;padding:18px 0;position:sticky;top:0;z-index:100}
   .container{max-width:1100px;margin:0 auto;padding:0 20px}
   .header-inner{display:flex;justify-content:space-between;align-items:center}
@@ -19,16 +19,21 @@
   .hero-desc{font-size:18px;color:#444;margin-bottom:24px}
   .price{font-size:34px;font-weight:700;color:#b91c1c;margin-bottom:24px}
 
-  .variant-box{border:1px solid #ddd;padding:18px;border-radius:12px;margin-bottom:12px;cursor:pointer}
-  .variant-box.selected{border-color:#000;background:#f8f8f8}
-  .variant-row{display:flex;justify-content:space-between;align-items:center}
-  .variant-name{font-weight:600}
-  .variant-price{font-weight:700;color:#b91c1c}
+  /* 套餐卡片高亮优化 */
+  .variant-box{border:2px solid #ddd;padding:20px;border-radius:12px;margin-bottom:15px;cursor:pointer;transition:all 0.3s ease;}
+  .variant-box.selected{border-color:#b91c1c;background:#fef7f7;box-shadow:0 4px 12px rgba(185,28,28,0.1);}
+  .variant-box:hover{border-color:#999;}
+  .variant-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .variant-name{font-weight:600;font-size:18px;}
+  .variant-price{font-weight:700;color:#b91c1c;font-size:18px;}
+  .variant-desc{font-size:14px;color:#666;margin-top:8px;line-height:1.4;}
 
   .buttons{display:flex;gap:14px;margin-top:28px}
-  .btn{flex:1;padding:18px;border-radius:12px;font-size:16px;font-weight:600;border:none;cursor:pointer}
-  .btn-primary{background:#000;color:#fff}
+  .btn{flex:1;padding:18px;border-radius:12px;font-size:16px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s ease;}
+  .btn-primary{background:#b91c1c;color:#fff;}
+  .btn-primary:hover{background:#9f1212;}
   .btn-secondary{background:#fff;color:#000;border:1px solid #000}
+  .btn-secondary:hover{background:#f5f5f5;}
 
   .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
   .badge{background:#f3f4f6;padding:8px 14px;border-radius:20px;font-size:12px}
@@ -36,7 +41,29 @@
   .section{padding:80px 0}
   .section-title{text-align:center;font-size:32px;margin-bottom:50px}
 
-  /* ========== 修改：Key Benefits 区域布局 ========== */
+  /* 核心修改：为每个主要版块添加差异化背景色 */
+  /* Product Description 背景 */
+  .product-desc-section {
+    background: #f8f9fa; /* 浅灰色 */
+  }
+  
+  /* Key Benefits 背景 */
+  .benefits-section {
+    background: #faf6f0; /* 浅米色 */
+  }
+  
+  /* Why Choose Day N Night 背景 */
+  .choose-section {
+    background: #f0f8fb; /* 浅蓝色 */
+  }
+  
+  /* Key Ingredients 背景（保留原有基础上微调） */
+  .ingredients{background:#f9f7fb; /* 浅紫色 */}
+  
+  /* From Our Customers 背景（保留原有基础上微调） */
+  .reviews{background:#f5f5f5;padding:80px 0}
+
+  /* Key Benefits 区域布局 */
   .benefits-wrapper{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -75,36 +102,34 @@
     box-shadow:0 8px 24px rgba(0,0,0,0.1);
   }
 
-  /* ========== 特性卡片样式 ========== */
+  /* 特性卡片样式 */
   .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
   .feature{
     background:#fff;
-    border:2px solid #f0f0f0; /* 外框边框 */
-    border-radius:16px;        /* 圆角 */
-    padding:40px 20px;        /* 内边距 */
-    box-shadow:0 4px 12px rgba(0,0,0,0.05); /* 轻微阴影增加立体感 */
-    transition:all 0.3s ease;  /* 过渡效果 */
+    border:2px solid #f0f0f0;
+    border-radius:16px;
+    padding:40px 20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    transition:all 0.3s ease;
   }
   .feature:hover{
-    border-color:#b91c1c;      /* 鼠标悬停时边框变色 */
-    transform:translateY(-5px);/* 轻微上浮效果 */
+    border-color:#b91c1c;
+    transform:translateY(-5px);
   }
   .feature h3{font-size:20px;margin-bottom:15px;color:#222;font-weight:700}
   .feature p{color:#555;font-size:16px;line-height:1.6}
 
-  .ingredients{background:#f9f9f9}
   .ingredients-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
   .ingredient-item{margin-bottom:20px;padding:15px;background:#fff;border-radius:8px}
   .ingredient-item h4{font-size:19px;margin-bottom:8px;color:#222}
   .ingredient-item p{font-size:16px;color:#444;line-height:1.5}
 
-  /* ========== 产品长介绍 ========== */
+  /* 产品长介绍 */
   .product-desc{line-height:1.8;font-size:17px;color:#333;margin-bottom:20px}
   .product-desc h3{font-size:22px;margin:30px 0 16px}
   .product-desc p{margin-bottom:16px}
 
-  /* ========== 客户照片评价区（参考图片样式） ========== */
-  .reviews{background:#f5f5f5;padding:80px 0}
+  /* 客户照片评价区 */
   .reviews-title{text-align:center;font-size:32px;margin-bottom:40px;color:#b91c1c}
   .reviews-grid{
     display:grid;
@@ -154,7 +179,7 @@
     line-height:1.5;
   }
 
-  /* ========== 滚动头像栏 ========== */
+  /* 滚动头像栏 */
   .avatar-scroll{
     background:#fff;
     padding:40px 0;
@@ -185,10 +210,11 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* ========== 谷歌表单区域 ========== */
+  /* 自定义表单区域（核心修改） */
   .form-section{
     padding:80px 0;
     background:#f9f9f9;
+    scroll-margin-top:80px; /* 锚点跳转偏移，避免被头部遮挡 */
   }
   .form-container{
     max-width:800px;
@@ -204,14 +230,70 @@
     margin-bottom:30px;
     color:#222;
   }
-  .google-form{
-    width:100%;
-    height:800px;
+  /* 表单样式 */
+  .custom-form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .form-label{
+    font-size:16px;
+    font-weight:600;
+    color:#333;
+  }
+  .form-label.required::after{
+    content:"*";
+    color:#b91c1c;
+    margin-left:4px;
+  }
+  .form-input{
+    padding:14px 16px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+    transition:border-color 0.2s ease;
+  }
+  .form-input:focus{
+    outline:none;
+    border-color:#b91c1c;
+    box-shadow:0 0 0 2px rgba(185,28,28,0.1);
+  }
+  .form-input:disabled{
+    background:#f9f9f9;
+    color:#333;
+  }
+  .submit-btn{
+    padding:18px;
+    background:#b91c1c;
+    color:#fff;
     border:none;
     border-radius:8px;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:background 0.2s ease;
+    margin-top:10px;
+  }
+  .submit-btn:hover{
+    background:#9f1212;
+  }
+  .submit-btn:disabled{
+    background:#ccc;
+    cursor:not-allowed;
+  }
+  .form-note{
+    font-size:14px;
+    color:#666;
+    text-align:center;
+    margin-top:10px;
   }
 
-  /* ========== 详细客户评论区 ========== */
+  /* 详细客户评论区 */
   .detailed-reviews{
     padding:80px 0;
     background:#fff;
@@ -277,10 +359,10 @@
     display:grid;
     grid-template-columns:80px 1fr;
     gap:20px;
-    display: none; /* 默认隐藏所有评论 */
+    display: none;
   }
   .detailed-review-item.show{
-    display:grid; /* 显示选中的评论 */
+    display:grid;
   }
   .reviewer-avatar{
     width:80px;
@@ -322,7 +404,7 @@
     margin-top:10px;
   }
 
-  /* ========== 页脚区域 ========== */
+  /* 页脚区域 */
   footer{
     background:#111;
     color:#fff;
@@ -346,9 +428,10 @@
     color:#888;
   }
 
+  /* 响应式适配 */
   @media(max-width:768px){
     .hero-grid{grid-template-columns:1fr}
-    .benefits-wrapper{grid-template-columns:1fr} /* 移动端单列显示 */
+    .benefits-wrapper{grid-template-columns:1fr}
     .features-grid{grid-template-columns:1fr} 
     .ingredients-inner{grid-template-columns:1fr}
     .buttons{flex-direction:column}
@@ -357,9 +440,10 @@
     .detailed-review-item{grid-template-columns:1fr}
     .review-header{flex-direction:column;align-items:flex-start}
     .form-container{padding:20px}
-    .google-form{height:600px}
     .feature{padding:30px 15px}
     .benefits-list li{font-size:16px}
+    .section{padding:50px 0}
+    .hero{padding:40px 0}
   }
 </style>
 </head>
@@ -375,7 +459,8 @@
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-img">
-      <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/34fca9d622944718987d299c1d7d8700.jpeg" alt="Day N Night Male Supplement">
+      <!-- 第一处修改：替换首页套餐旁边的图片 -->
+      <img src="https://github.com/w85142747-ship-it/coccngithub.io/blob/642abdaaed4bdcdd0c9ea7cc1d73bc1b6bd205d7/pro.png?raw=true" alt="Day N Night Male Supplement">
     </div>
     <div class="hero-content">
       <h1>Day N Night<br>Natural Male Performance Supplement</h1>
@@ -385,26 +470,31 @@
       </p>
       <div class="price" id="total-price">£198.00</div>
 
-      <div class="variant-box selected" data-price="198">
+      <!-- 套餐卡片（添加效果描述） -->
+      <div class="variant-box selected" data-price="198" data-package="vip1-£198" data-paylink="https://paypal.me/pinnaclefortune/198GBP">
         <div class="variant-row">
-          <span class="variant-name">Starter Pack (1 Box)</span>
+          <span class="variant-name">VIP1 Package</span>
           <span class="variant-price">£198.00</span>
         </div>
+        <div class="variant-desc">✅ 收到货联系顾问，享1个月男性健康随身咨询服务<br>✅ 随时解决男性健康问题</div>
       </div>
-      <div class="variant-box" data-price="360">
+      <div class="variant-box" data-price="360" data-package="vip2-£360" data-paylink="https://paypal.me/pinnaclefortune/360GBP">
         <div class="variant-row">
-          <span class="variant-name">Popular Pack (2 Boxes)</span>
+          <span class="variant-name">VIP2 Package</span>
           <span class="variant-price">£360.00</span>
         </div>
+        <div class="variant-desc">✅ 享3个月男性健康随身咨询服务<br>✅ 一对一健康指导+专属调理建议</div>
       </div>
-      <div class="variant-box" data-price="568">
+      <div class="variant-box" data-price="568" data-package="vip3-£568" data-paylink="https://paypal.me/pinnaclefortune/568GBP">
         <div class="variant-row">
-          <span class="variant-name">Ultimate Pack (3 Boxes)</span>
+          <span class="variant-name">VIP3 Package</span>
           <span class="variant-price">£568.00</span>
         </div>
+        <div class="variant-desc">✅ 享6个月男性健康随身咨询顾问在线服务<br>✅ 24小时响应+定制化健康方案</div>
       </div>
 
       <div class="buttons">
+        <!-- 立即订购按钮跳转表单 -->
         <button class="btn btn-primary" id="buynow">BUY NOW</button>
         <button class="btn btn-secondary">ADD TO CART</button>
       </div>
@@ -419,8 +509,8 @@
   </div>
 </section>
 
-<!-- ===================== 产品长介绍 ===================== -->
-<section class="section">
+<!-- 产品长介绍 - 添加专属类名 -->
+<section class="section product-desc-section">
   <div class="container">
     <h2 class="section-title">Product Description</h2>
     <div class="product-desc">
@@ -441,8 +531,8 @@
   </div>
 </section>
 
-<!-- ===================== Key Benefits 区域（添加右侧图片） ===================== -->
-<section class="section">
+<!-- Key Benefits 区域 - 添加专属类名 -->
+<section class="section benefits-section">
   <div class="container">
     <h2 class="section-title">Key Benefits</h2>
     <div class="benefits-wrapper">
@@ -456,14 +546,14 @@
         <li>Discreet packaging & fast UK delivery</li>
       </ul>
       <div>
-        <!-- 选用贴合产品特性的图片：天然草本 + 能量活力主题 -->
         <img src="https://picsum.photos/id/175/800/900" alt="Natural male performance supplement benefits" class="benefits-img">
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- Why Choose Day N Night - 添加专属类名 -->
+<section class="section choose-section">
   <div class="container">
     <h2 class="section-title">Why Choose Day N Night</h2>
     <div class="features-grid">
@@ -483,13 +573,14 @@
   </div>
 </section>
 
-<!-- ===================== 完善的原材料分屏介绍 ===================== -->
+<!-- 原材料分屏介绍 - 已修改背景色 -->
 <section class="section ingredients">
   <div class="container">
     <h2 class="section-title">Key Ingredients</h2>
     <div class="ingredients-inner">
       <div>
-        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/34fca9d622944718987d299c1d7d8700.jpeg" style="width:100%;border-radius:16px">
+        <!-- 第二处修改：替换成分表旁边的图片 -->
+        <img src="https://github.com/w85142747-ship-it/coccngithub.io/blob/642abdaaed4bdcdd0c9ea7cc1d73bc1b6bd205d7/chanp.png?raw=true" style="width:100%;border-radius:16px">
       </div>
       <div>
         <h3 style="font-size:24px;margin-bottom:25px;color:#222">Powerful Herbal Blend</h3>
@@ -525,12 +616,11 @@
   </div>
 </section>
 
-<!-- ===================== 客户照片评价区（真实男性+年龄） ===================== -->
+<!-- 客户照片评价区 - 已修改背景色 -->
 <section class="reviews">
   <div class="container">
     <h2 class="reviews-title">From Our Customers</h2>
     <div class="reviews-grid">
-      <!-- 客户1 - 45岁 中年男性 -->
       <div class="review-card">
         <img src="https://picsum.photos/id/1005/600/400" class="review-img" alt="Customer James">
         <div class="review-stars-bar">
@@ -543,7 +633,6 @@
         </div>
       </div>
 
-      <!-- 客户2 - 38岁 中青年男性 -->
       <div class="review-card">
         <img src="https://picsum.photos/id/1012/600/400" class="review-img" alt="Customer Daniel">
         <div class="review-stars-bar">
@@ -556,7 +645,6 @@
         </div>
       </div>
 
-      <!-- 客户3 - 52岁 中老年男性 -->
       <div class="review-card">
         <img src="https://picsum.photos/id/1025/600/400" class="review-img" alt="Customer Tom">
         <div class="review-stars-bar">
@@ -569,7 +657,6 @@
         </div>
       </div>
 
-      <!-- 客户4 - 41岁 中年男性 -->
       <div class="review-card">
         <img src="https://picsum.photos/id/1074/600/400" class="review-img" alt="Customer Jordan">
         <div class="review-stars-bar">
@@ -582,7 +669,6 @@
         </div>
       </div>
 
-      <!-- 客户5 - 49岁 中老年男性 -->
       <div class="review-card">
         <img src="https://picsum.photos/id/1062/600/400" class="review-img" alt="Customer Mark">
         <div class="review-stars-bar">
@@ -598,31 +684,45 @@
   </div>
 </section>
 
-<!-- ===================== 谷歌表单订购区域 ===================== -->
-<section class="form-section">
+<!-- 核心修改：表单区域移动到滚动头像栏前面 -->
+<section class="form-section" id="orderForm">
   <div class="container">
     <div class="form-container">
-      <h2 class="form-title">Order Now</h2>
-      <!-- 嵌入谷歌表单 -->
-      <iframe 
-        class="google-form"
-        id="googleForm"
-        src="https://docs.google.com/forms/d/e/1FAIpQLSe5n0S6J22GsrX9lVv9kHjCk_zHltF2k1VqZvV8tRvXQpW5dA/viewform?embedded=true"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0">
-        Loading…
-      </iframe>
+      <h2 class="form-title">Complete Your Order</h2>
+      <!-- 自定义表单 -->
+      <form class="custom-form" id="orderFormElement">
+        <div class="form-group">
+          <label class="form-label required" for="fullName">Full Name</label>
+          <input type="text" id="fullName" class="form-input" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label required" for="phone">Phone Number</label>
+          <input type="tel" id="phone" class="form-input" required placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
+          <label class="form-label required" for="address">Delivery Address</label>
+          <textarea id="address" class="form-input" rows="3" required placeholder="Enter your full delivery address"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address (Optional)</label>
+          <input type="email" id="email" class="form-input" placeholder="Enter your email address">
+        </div>
+        <div class="form-group">
+          <label class="form-label required" for="package">Selected Package</label>
+          <input type="text" id="package" class="form-input" value="vip1-£198" disabled>
+        </div>
+        <button type="submit" class="submit-btn" id="submitOrder">Submit Order & Pay Now</button>
+        <p class="form-note">By submitting this form, you agree to our terms and conditions. Your data will be used only for order processing.</p>
+      </form>
     </div>
   </div>
 </section>
 
-<!-- ===================== 滚动头像栏 ===================== -->
+<!-- 滚动头像栏 -->
 <section class="avatar-scroll">
   <div class="container">
     <h2 class="avatar-scroll-title">Trusted by Thousands of UK Men</h2>
     <div class="avatar-track">
-      <!-- 重复两次实现无缝滚动 -->
       <img src="https://picsum.photos/id/1005/200/200" class="avatar-item" alt="Customer">
       <img src="https://picsum.photos/id/1012/200/200" class="avatar-item" alt="Customer">
       <img src="https://picsum.photos/id/1025/200/200" class="avatar-item" alt="Customer">
@@ -647,7 +747,7 @@
   </div>
 </section>
 
-<!-- ===================== 详细客户评论区 ===================== -->
+<!-- 详细客户评论区 -->
 <section class="detailed-reviews">
   <div class="container">
     <div class="review-header">
@@ -671,7 +771,6 @@
     </div>
 
     <div class="review-list" id="reviewList">
-      <!-- 评论1 - 5星 -->
       <div class="detailed-review-item show" data-rating="5" data-date="2026-04-15" data-helpful="98">
         <img src="https://picsum.photos/id/1005/200/200" class="reviewer-avatar" alt="Thomas Mitchell">
         <div class="reviewer-info">
@@ -687,7 +786,6 @@
         </div>
       </div>
 
-      <!-- 评论2 - 5星 -->
       <div class="detailed-review-item show" data-rating="5" data-date="2026-04-10" data-helpful="87">
         <img src="https://picsum.photos/id/1012/200/200" class="reviewer-avatar" alt="David Wilson">
         <div class="reviewer-info">
@@ -703,7 +801,6 @@
         </div>
       </div>
 
-      <!-- 评论3 - 4星 -->
       <div class="detailed-review-item show" data-rating="4" data-date="2026-04-05" data-helpful="76">
         <img src="https://picsum.photos/id/1025/200/200" class="reviewer-avatar" alt="Robert Johnson">
         <div class="reviewer-info">
@@ -719,7 +816,6 @@
         </div>
       </div>
 
-      <!-- 评论4 - 5星 -->
       <div class="detailed-review-item show" data-rating="5" data-date="2026-03-28" data-helpful="92">
         <img src="https://picsum.photos/id/1074/200/200" class="reviewer-avatar" alt="William Taylor">
         <div class="reviewer-info">
@@ -735,7 +831,6 @@
         </div>
       </div>
 
-      <!-- 评论5 - 4星 -->
       <div class="detailed-review-item show" data-rating="4" data-date="2026-03-20" data-helpful="65">
         <img src="https://picsum.photos/id/1062/200/200" class="reviewer-avatar" alt="Richard Brown">
         <div class="reviewer-info">
@@ -751,7 +846,6 @@
         </div>
       </div>
 
-      <!-- 评论6 - 5星 -->
       <div class="detailed-review-item show" data-rating="5" data-date="2026-03-15" data-helpful="89">
         <img src="https://picsum.photos/id/1006/200/200" class="reviewer-avatar" alt="Steven Davis">
         <div class="reviewer-info">
@@ -767,7 +861,6 @@
         </div>
       </div>
 
-      <!-- 评论7 - 5星 -->
       <div class="detailed-review-item show" data-rating="5" data-date="2026-03-10" data-helpful="78">
         <img src="https://picsum.photos/id/1010/200/200" class="reviewer-avatar" alt="Paul Thompson">
         <div class="reviewer-info">
@@ -783,7 +876,6 @@
         </div>
       </div>
 
-      <!-- 评论8 - 4星 -->
       <div class="detailed-review-item show" data-rating="4" data-date="2026-03-05" data-helpful="69">
         <img src="https://picsum.photos/id/1011/200/200" class="reviewer-avatar" alt="Michael Anderson">
         <div class="reviewer-info">
@@ -799,7 +891,6 @@
         </div>
       </div>
 
-      <!-- 评论9 - 5星 -->
       <div class="detailed-review-item show" data-rating="5" data-date="2026-02-28" data-helpful="94">
         <img src="https://picsum.photos/id/1013/200/200" class="reviewer-avatar" alt="Chris Roberts">
         <div class="reviewer-info">
@@ -815,7 +906,6 @@
         </div>
       </div>
 
-      <!-- 评论10 - 4星 -->
       <div class="detailed-review-item show" data-rating="4" data-date="2026-02-20" data-helpful="72">
         <img src="https://picsum.photos/id/1014/200/200" class="reviewer-avatar" alt="Brian Walker">
         <div class="reviewer-info">
@@ -834,7 +924,7 @@
   </div>
 </section>
 
-<!-- ===================== 简化的页脚 ===================== -->
+<!-- 页脚 -->
 <footer>
   <div class="footer-inner">
     <div class="copyright">
@@ -844,72 +934,127 @@
 </footer>
 
 <script>
-  // 选择套餐
+  // 全局变量存储当前选中的套餐信息
+  let selectedPackage = {
+    price: "198",
+    packageName: "vip1-£198",
+    payLink: "https://paypal.me/pinnaclefortune/198GBP"
+  };
+
+  // 1. 套餐选择逻辑（高亮+存储信息）
   const variants = document.querySelectorAll('.variant-box');
   const priceDisplay = document.getElementById('total-price');
-  let currentPrice = '198';
+  const packageInput = document.getElementById('package');
 
   variants.forEach(v => {
     v.addEventListener('click', () => {
+      // 高亮选中的套餐
       variants.forEach(x => x.classList.remove('selected'));
       v.classList.add('selected');
-      currentPrice = v.dataset.price;
-      priceDisplay.textContent = `£${currentPrice}.00`;
-    })
-  })
-
-  // 购买跳转 Google Forms
-  document.getElementById('buynow').addEventListener('click', () => {
-    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSe5n0S6J22GsrX9lVv9kHjCk_zHltF2k1VqZvV8tRvXQpW5dA/viewform?entry.1205090130=${currentPrice}`;
-    window.open(formUrl, '_blank');
+      
+      // 更新套餐信息
+      selectedPackage.price = v.dataset.price;
+      selectedPackage.packageName = v.dataset.package;
+      selectedPackage.payLink = v.dataset.paylink;
+      
+      // 更新价格显示和表单中的套餐值
+      priceDisplay.textContent = `£${selectedPackage.price}.00`;
+      packageInput.value = selectedPackage.packageName;
+      
+      // 套餐卡片点击后跳转到表单区域
+      document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+    });
   });
 
-  // 表单提交后跳转支付链接
-  document.getElementById('googleForm').onload = function() {
-    this.contentWindow.addEventListener('submit', function() {
-      setTimeout(() => {
-        window.open('https://your-payment-link.com', '_blank');
-      }, 1000);
-    });
-  };
+  // 2. 立即订购按钮跳转表单
+  document.getElementById('buynow').addEventListener('click', () => {
+    document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+  });
 
-  // 评论筛选功能
+  // 3. 表单提交逻辑（提交到谷歌表单 + 跳转支付）
+  document.getElementById('orderFormElement').addEventListener('submit', async (e) => {
+    e.preventDefault(); // 阻止默认表单提交
+    
+    // 禁用提交按钮，防止重复提交
+    const submitBtn = document.getElementById('submitOrder');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Processing...";
+    
+    try {
+      // 收集表单数据
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        email: document.getElementById('email').value,
+        package: selectedPackage.packageName
+      };
+
+      // 提交数据到谷歌表单（替换为真实的谷歌表单链接和entry ID）
+      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse";
+      const formPayload = new FormData();
+      // 替换为真实的entry ID
+      formPayload.append('entry.533442796', formData.fullName); // 全名的entry ID
+      formPayload.append('entry.444964942', formData.phone);    // 电话的entry ID
+      formPayload.append('entry.390342779', formData.address);  // 地址的entry ID
+      formPayload.append('entry.141561044', formData.email);    // 邮箱的entry ID
+      formPayload.append('entry.1825569380', formData.package);  // 套餐的entry ID
+
+      // 异步提交到谷歌表单（无跳转）
+      await fetch(googleFormUrl, {
+        method: 'POST',
+        body: formPayload,
+        mode: 'no-cors' // 跨域提交（谷歌表单允许）
+      });
+
+      // 提交成功后打开支付链接
+      window.open(selectedPackage.payLink, '_blank');
+      
+      // 重置按钮状态
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Order & Pay Now";
+      
+      // 可选：重置表单
+      document.getElementById('orderFormElement').reset();
+      packageInput.value = selectedPackage.packageName; // 恢复套餐值
+      
+      alert("Your order has been submitted successfully! Redirecting to payment page...");
+      
+    } catch (error) {
+      // 出错处理
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Order & Pay Now";
+      alert("There was an error submitting your order. Please try again.");
+      console.error("Form submission error:", error);
+    }
+  });
+
+  // 4. 评论筛选功能（保留原有功能）
   const filterBtns = document.querySelectorAll('.filter-btn');
   const reviewItems = document.querySelectorAll('.detailed-review-item');
   const sortSelect = document.getElementById('sortReviews');
   const reviewList = document.getElementById('reviewList');
   
-  // 初始化 - 显示所有评论
   showReviews('all');
   
-  // 筛选按钮点击事件
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // 移除所有按钮的active类
       filterBtns.forEach(b => b.classList.remove('active'));
-      // 给当前点击的按钮添加active类
       btn.classList.add('active');
-      // 显示对应筛选的评论
       showReviews(btn.dataset.filter);
     });
   });
   
-  // 排序下拉框事件
   sortSelect.addEventListener('change', function() {
-    // 获取当前激活的筛选器
     const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    // 先筛选，再排序
     showReviews(activeFilter, this.value);
   });
   
-  // 显示评论函数
   function showReviews(filterType, sortType = 'highest') {
-    // 先隐藏所有评论
     reviewItems.forEach(item => {
       item.classList.remove('show');
     });
     
-    // 根据筛选类型筛选评论
     let filteredReviews = [];
     if (filterType === 'all') {
       filteredReviews = Array.from(reviewItems);
@@ -919,7 +1064,6 @@
       filteredReviews = Array.from(reviewItems).filter(item => item.dataset.rating === '4');
     }
     
-    // 根据排序类型排序评论
     if (sortType === 'latest') {
       filteredReviews.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
     } else if (sortType === 'helpful') {
@@ -928,7 +1072,6 @@
       filteredReviews.sort((a, b) => b.dataset.rating - a.dataset.rating || b.dataset.helpful - a.dataset.helpful);
     }
     
-    // 重新添加到DOM并显示
     filteredReviews.forEach(item => {
       reviewList.appendChild(item);
       item.classList.add('show');
