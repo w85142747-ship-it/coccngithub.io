@@ -6,7 +6,7 @@
 <title>Day N Night | Natural Male Performance Supplement</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  body{background:#fff;color:#111;scroll-behavior: smooth;} /* 平滑滚动 */
+  body{background:#fff;color:#111;scroll-behavior: smooth;}
   header{background:#fff;border-bottom:1px solid #eee;padding:18px 0;position:sticky;top:0;z-index:100}
   .container{max-width:1100px;margin:0 auto;padding:0 20px}
   .header-inner{display:flex;justify-content:space-between;align-items:center}
@@ -19,7 +19,6 @@
   .hero-desc{font-size:18px;color:#444;margin-bottom:24px}
   .price{font-size:34px;font-weight:700;color:#b91c1c;margin-bottom:24px}
 
-  /* 套餐卡片高亮优化 */
   .variant-box{border:2px solid #ddd;padding:20px;border-radius:12px;margin-bottom:15px;cursor:pointer;transition:all 0.3s ease;}
   .variant-box.selected{border-color:#b91c1c;background:#fef7f7;box-shadow:0 4px 12px rgba(185,28,28,0.1);}
   .variant-box:hover{border-color:#999;}
@@ -28,7 +27,6 @@
   .variant-price{font-weight:700;color:#b91c1c;font-size:18px;}
   .variant-desc{font-size:14px;color:#666;margin-top:8px;line-height:1.4;}
 
-  /* 表单内套餐选择样式 */
   .form-variants{
     margin-bottom:20px;
     display:flex;
@@ -60,29 +58,12 @@
   .section{padding:80px 0}
   .section-title{text-align:center;font-size:32px;margin-bottom:50px}
 
-  /* 核心修改：为每个主要版块添加差异化背景色 */
-  /* Product Description 背景 */
-  .product-desc-section {
-    background: #f8f9fa; /* 浅灰色 */
-  }
-  
-  /* Key Benefits 背景 */
-  .benefits-section {
-    background: #faf6f0; /* 浅米色 */
-  }
-  
-  /* Why Choose Day N Night 背景 */
-  .choose-section {
-    background: #f0f8fb; /* 浅蓝色 */
-  }
-  
-  /* Key Ingredients 背景（保留原有基础上微调） */
-  .ingredients{background:#f9f7fb; /* 浅紫色 */}
-  
-  /* From Our Customers 背景（保留原有基础上微调） */
+  .product-desc-section {background: #f8f9fa;}
+  .benefits-section {background: #faf6f0;}
+  .choose-section {background: #f0f8fb;}
+  .ingredients{background:#f9f7fb;}
   .reviews{background:#f5f5f5;padding:80px 0}
 
-  /* Key Benefits 区域布局 */
   .benefits-wrapper{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -121,7 +102,6 @@
     box-shadow:0 8px 24px rgba(0,0,0,0.1);
   }
 
-  /* 特性卡片样式 */
   .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
   .feature{
     background:#fff;
@@ -143,12 +123,10 @@
   .ingredient-item h4{font-size:19px;margin-bottom:8px;color:#222}
   .ingredient-item p{font-size:16px;color:#444;line-height:1.5}
 
-  /* 产品长介绍 */
   .product-desc{line-height:1.8;font-size:17px;color:#333;margin-bottom:20px}
   .product-desc h3{font-size:22px;margin:30px 0 16px}
   .product-desc p{margin-bottom:16px}
 
-  /* 客户照片评价区 */
   .reviews-title{text-align:center;font-size:32px;margin-bottom:40px;color:#b91c1c}
   .reviews-grid{
     display:grid;
@@ -198,7 +176,6 @@
     line-height:1.5;
   }
 
-  /* 滚动头像栏 */
   .avatar-scroll{
     background:#fff;
     padding:40px 0;
@@ -229,11 +206,10 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* 自定义表单区域（核心修改） */
   .form-section{
     padding:80px 0;
     background:#f9f9f9;
-    scroll-margin-top:80px; /* 锚点跳转偏移，避免被头部遮挡 */
+    scroll-margin-top:80px;
   }
   .form-container{
     max-width:800px;
@@ -249,7 +225,6 @@
     margin-bottom:30px;
     color:#222;
   }
-  /* 表单样式 */
   .custom-form{
     display:flex;
     flex-direction:column;
@@ -312,7 +287,6 @@
     margin-top:10px;
   }
 
-  /* 详细客户评论区 */
   .detailed-reviews{
     padding:80px 0;
     background:#fff;
@@ -423,7 +397,6 @@
     margin-top:10px;
   }
 
-  /* 页脚区域 */
   footer{
     background:#111;
     color:#fff;
@@ -446,7 +419,6 @@
     font-size:13px;
     color:#888;
   }
-  /* 新增声明样式 */
   .disclaimer {
     font-size: 12px;
     color: #999;
@@ -457,7 +429,6 @@
     padding: 0 20px;
   }
 
-  /* 响应式适配 */
   @media(max-width:768px){
     .hero-grid{grid-template-columns:1fr}
     .benefits-wrapper{grid-template-columns:1fr}
@@ -498,7 +469,6 @@
       </p>
       <div class="price" id="total-price">£198.00</div>
 
-      <!-- 首页套餐卡片 -->
       <div class="variant-box selected" data-price="198" data-package="vip1-£198" data-paylink="https://paypal.me/pinnaclefortune/198GBP">
         <div class="variant-row">
           <span class="variant-name">VIP1 Package</span>
@@ -535,7 +505,6 @@
   </div>
 </section>
 
-<!-- 产品长介绍 -->
 <section class="section product-desc-section">
   <div class="container">
     <h2 class="section-title">Product Description</h2>
@@ -557,7 +526,6 @@
   </div>
 </section>
 
-<!-- Key Benefits 区域 -->
 <section class="section benefits-section">
   <div class="container">
     <h2 class="section-title">Key Benefits</h2>
@@ -578,7 +546,6 @@
   </div>
 </section>
 
-<!-- Why Choose Day N Night -->
 <section class="section choose-section">
   <div class="container">
     <h2 class="section-title">Why Choose Day N Night</h2>
@@ -599,7 +566,6 @@
   </div>
 </section>
 
-<!-- 原材料分屏介绍 -->
 <section class="section ingredients">
   <div class="container">
     <h2 class="section-title">Key Ingredients</h2>
@@ -641,7 +607,6 @@
   </div>
 </section>
 
-<!-- 客户照片评价区 -->
 <section class="reviews">
   <div class="container">
     <h2 class="reviews-title">From Our Customers</h2>
@@ -709,13 +674,17 @@
   </div>
 </section>
 
-<!-- 表单区域 -->
 <section class="form-section" id="orderForm">
   <div class="container">
     <div class="form-container">
       <h2 class="form-title">Complete Your Order</h2>
-      <form class="custom-form" id="orderFormElement">
-        <!-- 表单内新增套餐选择区 -->
+      <!-- 核心修改：直接用Google表单的原生提交方式 -->
+      <form class="custom-form" 
+            action="https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse" 
+            method="POST" 
+            target="_blank"
+            id="orderFormElement">
+        
         <div class="form-group">
           <label class="form-label required">Select Package</label>
           <div class="form-variants">
@@ -743,34 +712,38 @@
           </div>
         </div>
 
+        <!-- 隐藏字段：用于提交套餐信息 -->
+        <input type="hidden" name="entry.1825569380" id="hiddenPackage" value="vip1-£198">
+        
         <div class="form-group">
           <label class="form-label required" for="fullName">Full Name</label>
-          <input type="text" id="fullName" class="form-input" required placeholder="Enter your full name">
+          <input type="text" id="fullName" name="entry.533442796" class="form-input" required placeholder="Enter your full name">
         </div>
         <div class="form-group">
           <label class="form-label required" for="phone">Phone Number</label>
-          <input type="tel" id="phone" class="form-input" required placeholder="Enter your phone number">
+          <input type="tel" id="phone" name="entry.444964942" class="form-input" required placeholder="Enter your phone number">
         </div>
         <div class="form-group">
           <label class="form-label required" for="address">Delivery Address</label>
-          <textarea id="address" class="form-input" rows="3" required placeholder="Enter your full delivery address"></textarea>
+          <textarea id="address" name="entry.390342779" class="form-input" rows="3" required placeholder="Enter your full delivery address"></textarea>
         </div>
         <div class="form-group">
           <label class="form-label" for="email">Email Address (Optional)</label>
-          <input type="email" id="email" class="form-input" placeholder="Enter your email address">
+          <input type="email" id="email" name="entry.141561044" class="form-input" placeholder="Enter your email address">
         </div>
         <div class="form-group">
           <label class="form-label required" for="package">Selected Package</label>
           <input type="text" id="package" class="form-input" value="vip1-£198" disabled>
         </div>
-        <button type="submit" class="submit-btn" id="submitOrder">Submit Order & Pay Now</button>
+        
+        <!-- 新增：支付链接跳转按钮 -->
+        <button type="button" class="submit-btn" id="submitOrder">Submit Order & Pay Now</button>
         <p class="form-note">By submitting this form, you agree to our terms and conditions. Your data will be used only for order processing.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- 滚动头像栏 -->
 <section class="avatar-scroll">
   <div class="container">
     <h2 class="avatar-scroll-title">Trusted by Thousands of UK Men</h2>
@@ -799,7 +772,6 @@
   </div>
 </section>
 
-<!-- 详细客户评论区 -->
 <section class="detailed-reviews">
   <div class="container">
     <div class="review-header">
@@ -976,7 +948,6 @@
   </div>
 </section>
 
-<!-- 页脚 -->
 <footer>
   <div class="footer-inner">
     <div class="disclaimer">
@@ -990,127 +961,83 @@
 </footer>
 
 <script>
-  // 全局变量存储当前选中的套餐信息
   let selectedPackage = {
     price: "198",
     packageName: "vip1-£198",
     payLink: "https://paypal.me/pinnaclefortune/198GBP"
   };
 
-  // 1. 首页套餐选择逻辑
   const heroVariants = document.querySelectorAll('.hero .variant-box');
   const priceDisplay = document.getElementById('total-price');
   const packageInput = document.getElementById('package');
+  const hiddenPackage = document.getElementById('hiddenPackage');
 
-  // 首页套餐点击事件
   heroVariants.forEach(v => {
     v.addEventListener('click', () => {
-      // 首页套餐高亮
       heroVariants.forEach(x => x.classList.remove('selected'));
       v.classList.add('selected');
-      
-      // 更新全局套餐信息
       updatePackageInfo(v.dataset.price, v.dataset.package, v.dataset.paylink);
-      
-      // 同步表单内套餐选中状态
       syncFormVariantSelection(v.dataset.package);
-      
-      // 滚动到表单
       document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
     });
   });
 
-  // 2. 表单内套餐选择逻辑
   const formVariants = document.querySelectorAll('.form-variant-box');
   formVariants.forEach(v => {
     v.addEventListener('click', () => {
-      // 表单内套餐高亮
       formVariants.forEach(x => x.classList.remove('selected'));
       v.classList.add('selected');
-      
-      // 更新全局套餐信息
       updatePackageInfo(v.dataset.price, v.dataset.package, v.dataset.paylink);
-      
-      // 同步首页套餐选中状态
       syncHeroVariantSelection(v.dataset.package);
     });
   });
 
-  // 3. 立即订购按钮跳转表单
   document.getElementById('buynow').addEventListener('click', () => {
     document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // 4. 表单提交逻辑（修复跨域+错误处理）
-  document.getElementById('orderFormElement').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
+  // 核心修改：先提交Google表单，再跳转支付
+  document.getElementById('submitOrder').addEventListener('click', async (e) => {
     const submitBtn = document.getElementById('submitOrder');
     submitBtn.disabled = true;
     submitBtn.textContent = "Processing...";
     
     try {
-      // 收集表单数据并去空格
-      const formData = {
-        fullName: document.getElementById('fullName').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        address: document.getElementById('address').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        package: selectedPackage.packageName
-      };
+      const fullName = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
 
-      // 验证必填项
-      if (!formData.fullName || !formData.phone || !formData.address) {
+      if (!fullName || !phone || !address) {
         alert("Please fill in all required fields (Full Name, Phone, Address)");
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Order & Pay Now";
         return;
       }
 
-      // 正确的Google表单提交地址
-      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse";
-      
-      // 使用URLSearchParams提交（兼容Google表单）
-      const formPayload = new URLSearchParams();
-      formPayload.append('entry.533442796', formData.fullName);    // 全名
-      formPayload.append('entry.444964942', formData.phone);       // 电话
-      formPayload.append('entry.390342779', formData.address);     // 地址
-      formPayload.append('entry.141561044', formData.email);       // 邮箱
-      formPayload.append('entry.1825569380', formData.package);    // 套餐
-      formPayload.append('submit', '1'); // Google表单标准提交参数
+      // 1. 提交Google表单（原生form提交，100%能传数据）
+      const form = document.getElementById('orderFormElement');
+      form.submit();
 
-      // 提交表单（使用no-cors模式适配跨域）
-      await fetch(googleFormUrl, {
-        method: 'POST',
-        body: formPayload,
-        mode: 'no-cors', // 关键：修复跨域报错
-        cache: 'no-cache'
-      });
+      // 2. 延迟跳转支付（确保表单提交完成）
+      setTimeout(() => {
+        window.open(selectedPackage.payLink, '_blank');
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Order & Pay Now";
+        // 重置表单
+        form.reset();
+        packageInput.value = selectedPackage.packageName;
+        hiddenPackage.value = selectedPackage.packageName;
+      }, 1000);
 
-      // 无论响应如何，都跳转支付（no-cors无法获取响应状态）
-      window.open(selectedPackage.payLink, '_blank');
-      
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Order & Pay Now";
-      
-      // 重置表单（保留套餐值）
-      document.getElementById('orderFormElement').reset();
-      packageInput.value = selectedPackage.packageName;
-      
-      alert("Your order has been submitted successfully! Redirecting to payment page...");
-      
     } catch (error) {
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit Order & Pay Now";
-      // 友好提示，不暴露技术错误
-      alert("Your order information has been processed! Redirecting to payment page...");
-      // 即使报错也跳转支付
+      alert("Order submitted! Redirecting to payment...");
       window.open(selectedPackage.payLink, '_blank');
-      console.error("Form submission error:", error);
+      console.error("Error:", error);
     }
   });
 
-  // 5. 评论筛选功能
   const filterBtns = document.querySelectorAll('.filter-btn');
   const reviewItems = document.querySelectorAll('.detailed-review-item');
   const sortSelect = document.getElementById('sortReviews');
@@ -1131,18 +1058,16 @@
     showReviews(activeFilter, this.value);
   });
   
-  // 辅助函数：更新套餐信息
   function updatePackageInfo(price, pkgName, payLink) {
     selectedPackage.price = price;
     selectedPackage.packageName = pkgName;
     selectedPackage.payLink = payLink;
     
-    // 更新价格显示和表单值
     if (priceDisplay) priceDisplay.textContent = `£${price}.00`;
     if (packageInput) packageInput.value = pkgName;
+    if (hiddenPackage) hiddenPackage.value = pkgName; // 更新隐藏字段
   }
 
-  // 辅助函数：同步表单内套餐选中状态
   function syncFormVariantSelection(pkgName) {
     formVariants.forEach(v => {
       if (v.dataset.package === pkgName) {
@@ -1153,7 +1078,6 @@
     });
   }
 
-  // 辅助函数：同步首页套餐选中状态
   function syncHeroVariantSelection(pkgName) {
     heroVariants.forEach(v => {
       if (v.dataset.package === pkgName) {
@@ -1164,7 +1088,6 @@
     });
   }
   
-  // 辅助函数：评论筛选
   function showReviews(filterType, sortType = 'highest') {
     reviewItems.forEach(item => {
       item.classList.remove('show');
