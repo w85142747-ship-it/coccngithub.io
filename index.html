@@ -286,7 +286,7 @@
     text-align:center;
     margin-top:10px;
   }
-  /* 新增：提交成功提示样式 */
+  /* 提交成功提示样式 */
   .success-message {
     display: none;
     background: #dcfce7;
@@ -516,7 +516,6 @@
   </div>
 </section>
 
-<!-- 省略产品描述、功效、成分等非核心板块（代码与原版本一致） -->
 <section class="section product-desc-section">
   <div class="container">
     <h2 class="section-title">Product Description</h2>
@@ -691,18 +690,13 @@
     <div class="form-container">
       <h2 class="form-title">Complete Your Order</h2>
       
-      <!-- 新增：提交成功提示 -->
+      <!-- 提交成功提示 -->
       <div class="success-message" id="successMessage">
-        ✅ Order submitted successfully! Redirecting to payment...
+        ✅ Order information saved! Redirecting to payment...
       </div>
       
-      <!-- 核心优化：基于你提供的entry ID精准配置表单 -->
-      <form class="custom-form" 
-            action="https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse" 
-            method="POST" 
-            target="_blank"
-            id="orderFormElement">
-        
+      <!-- 核心表单：无action/target，静默提交 -->
+      <form class="custom-form" id="orderFormElement">
         <div class="form-group">
           <label class="form-label required">Select Package</label>
           <div class="form-variants">
@@ -730,9 +724,6 @@
           </div>
         </div>
 
-        <!-- 关键：使用你提供的精准entry ID -->
-        <input type="hidden" name="entry.1825569380" id="hiddenPackage" value="vip1-£198">
-        
         <div class="form-group">
           <label class="form-label required" for="fullName">Full Name</label>
           <input type="text" id="fullName" name="entry.533442796" class="form-input" required placeholder="Enter your full name">
@@ -751,7 +742,7 @@
         </div>
         <div class="form-group">
           <label class="form-label required" for="package">Selected Package</label>
-          <input type="text" id="package" class="form-input" value="vip1-£198" disabled>
+          <input type="text" id="package" name="entry.1825569380" class="form-input" value="vip1-£198" disabled>
         </div>
         
         <button type="button" class="submit-btn" id="submitOrder">Submit Order & Pay Now</button>
@@ -984,10 +975,10 @@
     payLink: "https://paypal.me/pinnaclefortune/198GBP"
   };
 
+  // 套餐选择逻辑
   const heroVariants = document.querySelectorAll('.hero .variant-box');
   const priceDisplay = document.getElementById('total-price');
   const packageInput = document.getElementById('package');
-  const hiddenPackage = document.getElementById('hiddenPackage');
   const successMessage = document.getElementById('successMessage');
 
   heroVariants.forEach(v => {
@@ -1014,24 +1005,16 @@
     document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // 核心优化：稳定的表单提交逻辑
+  // 核心：静默提交表单 + 直接跳转支付
   document.getElementById('submitOrder').addEventListener('click', async (e) => {
     const submitBtn = document.getElementById('submitOrder');
     const fullName = document.getElementById('fullName').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const address = document.getElementById('address').value.trim();
 
-    // 严格的前端验证
-    if (!fullName) {
-      alert("Please enter your full name");
-      return;
-    }
-    if (!phone) {
-      alert("Please enter your phone number");
-      return;
-    }
-    if (!address) {
-      alert("Please enter your delivery address");
+    // 前端验证
+    if (!fullName || !phone || !address) {
+      alert("Please fill in all required fields (Full Name, Phone, Address)");
       return;
     }
 
@@ -1040,39 +1023,54 @@
     submitBtn.textContent = "Processing...";
     
     try {
-      // 1. 提交表单到Google Forms（原生提交，最高稳定性）
-      const form = document.getElementById('orderFormElement');
-      form.submit();
+      // 1. 构建表单数据（静默提交到Google表单）
+      const formData = new FormData();
+      formData.append('entry.533442796', fullName);       // 姓名
+      formData.append('entry.444964942', phone);         // 电话
+      formData.append('entry.390342779', address);       // 地址
+      formData.append('entry.141561044', document.getElementById('email').value.trim() || ''); // 邮箱
+      formData.append('entry.1825569380', selectedPackage.packageName); // 套餐
+      formData.append('fvv', '1');
+      formData.append('draftResponse', '[]');
+      formData.append('pageHistory', '0');
 
-      // 2. 显示成功提示
+      // 2. 异步提交到Google表单（用户无感知）
+      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors', // 跨域静默提交
+        cache: 'no-cache'
+      });
+
+      // 3. 显示成功提示
       successMessage.style.display = 'block';
 
-      // 3. 延迟跳转支付页面（确保表单数据提交完成）
+      // 4. 直接跳转到支付链接（核心需求）
       setTimeout(() => {
-        window.open(selectedPackage.payLink, '_blank');
+        window.location.href = selectedPackage.payLink; // 直接跳转（替换当前页面）
+        // 如需保留原页面，改用：window.open(selectedPackage.payLink, '_blank');
         
-        // 重置表单和状态
-        form.reset();
+        // 重置表单（可选）
+        document.getElementById('orderFormElement').reset();
         packageInput.value = selectedPackage.packageName;
-        hiddenPackage.value = selectedPackage.packageName;
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Order & Pay Now";
         successMessage.style.display = 'none';
-      }, 1500);
+      }, 1000);
 
     } catch (error) {
-      // 异常处理：备用方案
-      alert("Order submitted successfully! Redirecting to payment...");
-      window.open(selectedPackage.payLink, '_blank');
+      // 即使提交失败，也跳转到支付页面
+      console.error("Form submission error:", error);
+      alert("Preparing your payment...");
+      window.location.href = selectedPackage.payLink;
       
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit Order & Pay Now";
       successMessage.style.display = 'none';
-      console.error("Submission error (but order still processed):", error);
     }
   });
 
-  // 评论筛选排序逻辑（保持不变）
+  // 评论筛选排序逻辑
   const filterBtns = document.querySelectorAll('.filter-btn');
   const reviewItems = document.querySelectorAll('.detailed-review-item');
   const sortSelect = document.getElementById('sortReviews');
@@ -1093,7 +1091,6 @@
     showReviews(activeFilter, this.value);
   });
   
-  // 更新套餐信息（核心：同步隐藏字段）
   function updatePackageInfo(price, pkgName, payLink) {
     selectedPackage.price = price;
     selectedPackage.packageName = pkgName;
@@ -1101,7 +1098,6 @@
     
     if (priceDisplay) priceDisplay.textContent = `£${price}.00`;
     if (packageInput) packageInput.value = pkgName;
-    if (hiddenPackage) hiddenPackage.value = pkgName; // 关键：更新Google表单的隐藏字段
   }
 
   function syncFormVariantSelection(pkgName) {
