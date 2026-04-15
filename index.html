@@ -1005,69 +1005,89 @@
     document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // 核心：静默提交表单 + 直接跳转支付
+  // 核心：静默提交表单 + 重试机制 + 直接跳转支付
   document.getElementById('submitOrder').addEventListener('click', async (e) => {
     const submitBtn = document.getElementById('submitOrder');
     const fullName = document.getElementById('fullName').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const address = document.getElementById('address').value.trim();
 
-    // 前端验证
+    // 前端必填项验证
     if (!fullName || !phone || !address) {
       alert("Please fill in all required fields (Full Name, Phone, Address)");
       return;
     }
 
-    // 禁用按钮防止重复提交
+    // 禁用按钮，防止重复提交
     submitBtn.disabled = true;
-    submitBtn.textContent = "Processing...";
-    
-    try {
-      // 1. 构建表单数据（静默提交到Google表单）
-      const formData = new FormData();
-      formData.append('entry.533442796', fullName);       // 姓名
-      formData.append('entry.444964942', phone);         // 电话
-      formData.append('entry.390342779', address);       // 地址
-      formData.append('entry.141561044', document.getElementById('email').value.trim() || ''); // 邮箱
-      formData.append('entry.1825569380', selectedPackage.packageName); // 套餐
-      formData.append('fvv', '1');
-      formData.append('draftResponse', '[]');
-      formData.append('pageHistory', '0');
+    submitBtn.textContent = "Saving your order...";
+    successMessage.style.display = 'block';
+    successMessage.textContent = "🔄 Saving your order information...";
 
-      // 2. 异步提交到Google表单（用户无感知）
-      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors', // 跨域静默提交
-        cache: 'no-cache'
-      });
+    // 1. 构建表单数据（完全匹配你的entry ID）
+    const formData = new FormData();
+    formData.append('entry.533442796', fullName);       // 姓名
+    formData.append('entry.444964942', phone);         // 电话
+    formData.append('entry.390342779', address);       // 地址
+    formData.append('entry.141561044', document.getElementById('email').value.trim() || ''); // 邮箱
+    formData.append('entry.1825569380', selectedPackage.packageName); // 套餐
+    formData.append('fvv', '1');
+    formData.append('draftResponse', '[]');
+    formData.append('pageHistory', '0');
 
-      // 3. 显示成功提示
-      successMessage.style.display = 'block';
+    // 2. 核心优化：增加重试机制（最多3次，每次间隔1秒）
+    let submitSuccess = false;
+    let retryCount = 0;
+    const maxRetries = 3;
 
-      // 4. 直接跳转到支付链接（核心需求）
-      setTimeout(() => {
-        window.location.href = selectedPackage.payLink; // 直接跳转（替换当前页面）
-        // 如需保留原页面，改用：window.open(selectedPackage.payLink, '_blank');
-        
-        // 重置表单（可选）
-        document.getElementById('orderFormElement').reset();
-        packageInput.value = selectedPackage.packageName;
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Order & Pay Now";
-        successMessage.style.display = 'none';
-      }, 1000);
+    while (!submitSuccess && retryCount < maxRetries) {
+      try {
+        // 用AbortController设置5秒超时，避免无限等待
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-    } catch (error) {
-      // 即使提交失败，也跳转到支付页面
-      console.error("Form submission error:", error);
-      alert("Preparing your payment...");
+        await fetch('https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse', {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors',
+          cache: 'no-cache',
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+        submitSuccess = true; // 无报错即视为提交成功
+        break;
+      } catch (error) {
+        retryCount++;
+        console.log(`Submit attempt ${retryCount} failed:`, error);
+        if (retryCount < maxRetries) {
+          // 重试前等待1秒，避免触发Google风控
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
+    }
+
+    // 3. 无论提交是否成功，都跳转到支付（保障核心交易流程）
+    if (submitSuccess) {
+      successMessage.textContent = "✅ Order saved! Redirecting to payment...";
+    } else {
+      successMessage.textContent = "⚠️ Order may not be saved, but redirecting to payment...";
+      // 可选：取消注释给用户提示，不影响支付
+      // alert("Note: We couldn't save your order info temporarily, but you can still pay. We will contact you to confirm details.");
+    }
+
+    // 4. 延迟1秒跳转，让用户看到提示
+    setTimeout(() => {
+      // 直接跳转（替换当前页面），如需保留原页面用 window.open(selectedPackage.payLink, '_blank')
       window.location.href = selectedPackage.payLink;
       
+      // 重置表单和按钮状态
+      document.getElementById('orderFormElement').reset();
+      packageInput.value = selectedPackage.packageName;
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit Order & Pay Now";
       successMessage.style.display = 'none';
-    }
+    }, 1000);
   });
 
   // 评论筛选排序逻辑
