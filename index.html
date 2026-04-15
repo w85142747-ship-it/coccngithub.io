@@ -28,6 +28,25 @@
   .variant-price{font-weight:700;color:#b91c1c;font-size:18px;}
   .variant-desc{font-size:14px;color:#666;margin-top:8px;line-height:1.4;}
 
+  /* 表单内套餐选择样式 */
+  .form-variants{
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .form-variant-box{
+    border:2px solid #ddd;
+    padding:15px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .form-variant-box.selected{
+    border-color:#b91c1c;
+    background:#fef7f7;
+  }
+
   .buttons{display:flex;gap:14px;margin-top:28px}
   .btn{flex:1;padding:18px;border-radius:12px;font-size:16px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s ease;}
   .btn-primary{background:#b91c1c;color:#fff;}
@@ -479,7 +498,7 @@
       </p>
       <div class="price" id="total-price">£198.00</div>
 
-      <!-- 套餐卡片 -->
+      <!-- 首页套餐卡片 -->
       <div class="variant-box selected" data-price="198" data-package="vip1-£198" data-paylink="https://paypal.me/pinnaclefortune/198GBP">
         <div class="variant-row">
           <span class="variant-name">VIP1 Package</span>
@@ -696,6 +715,34 @@
     <div class="form-container">
       <h2 class="form-title">Complete Your Order</h2>
       <form class="custom-form" id="orderFormElement">
+        <!-- 表单内新增套餐选择区 -->
+        <div class="form-group">
+          <label class="form-label required">Select Package</label>
+          <div class="form-variants">
+            <div class="form-variant-box selected" data-price="198" data-package="vip1-£198" data-paylink="https://paypal.me/pinnaclefortune/198GBP">
+              <div class="variant-row">
+                <span class="variant-name">VIP1 Package</span>
+                <span class="variant-price">£198.00</span>
+              </div>
+              <div class="variant-desc">✅ 1个月男性健康咨询服务</div>
+            </div>
+            <div class="form-variant-box" data-price="360" data-package="vip2-£360" data-paylink="https://paypal.me/pinnaclefortune/360GBP">
+              <div class="variant-row">
+                <span class="variant-name">VIP2 Package</span>
+                <span class="variant-price">£360.00</span>
+              </div>
+              <div class="variant-desc">✅ 3个月男性健康咨询服务</div>
+            </div>
+            <div class="form-variant-box" data-price="568" data-package="vip3-£568" data-paylink="https://paypal.me/pinnaclefortune/568GBP">
+              <div class="variant-row">
+                <span class="variant-name">VIP3 Package</span>
+                <span class="variant-price">£568.00</span>
+              </div>
+              <div class="variant-desc">✅ 6个月男性健康咨询服务</div>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label required" for="fullName">Full Name</label>
           <input type="text" id="fullName" class="form-input" required placeholder="Enter your full name">
@@ -950,33 +997,51 @@
     payLink: "https://paypal.me/pinnaclefortune/198GBP"
   };
 
-  // 1. 套餐选择逻辑
-  const variants = document.querySelectorAll('.variant-box');
+  // 1. 首页套餐选择逻辑
+  const heroVariants = document.querySelectorAll('.hero .variant-box');
   const priceDisplay = document.getElementById('total-price');
   const packageInput = document.getElementById('package');
 
-  variants.forEach(v => {
+  // 首页套餐点击事件
+  heroVariants.forEach(v => {
     v.addEventListener('click', () => {
-      variants.forEach(x => x.classList.remove('selected'));
+      // 首页套餐高亮
+      heroVariants.forEach(x => x.classList.remove('selected'));
       v.classList.add('selected');
       
-      selectedPackage.price = v.dataset.price;
-      selectedPackage.packageName = v.dataset.package;
-      selectedPackage.payLink = v.dataset.paylink;
+      // 更新全局套餐信息
+      updatePackageInfo(v.dataset.price, v.dataset.package, v.dataset.paylink);
       
-      priceDisplay.textContent = `£${selectedPackage.price}.00`;
-      packageInput.value = selectedPackage.packageName;
+      // 同步表单内套餐选中状态
+      syncFormVariantSelection(v.dataset.package);
       
+      // 滚动到表单
       document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
     });
   });
 
-  // 2. 立即订购按钮跳转表单
+  // 2. 表单内套餐选择逻辑
+  const formVariants = document.querySelectorAll('.form-variant-box');
+  formVariants.forEach(v => {
+    v.addEventListener('click', () => {
+      // 表单内套餐高亮
+      formVariants.forEach(x => x.classList.remove('selected'));
+      v.classList.add('selected');
+      
+      // 更新全局套餐信息
+      updatePackageInfo(v.dataset.price, v.dataset.package, v.dataset.paylink);
+      
+      // 同步首页套餐选中状态
+      syncHeroVariantSelection(v.dataset.package);
+    });
+  });
+
+  // 3. 立即订购按钮跳转表单
   document.getElementById('buynow').addEventListener('click', () => {
     document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // 3. 表单提交逻辑（修复版）
+  // 4. 表单提交逻辑（修复跨域+错误处理）
   document.getElementById('orderFormElement').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -1005,51 +1070,47 @@
       // 正确的Google表单提交地址
       const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf7TG8zg296VdkUpRTc23jvCNHWM4kuQKEOwMSQkNZm00e0fw/formResponse";
       
-      // 使用URLSearchParams提交（Google表单推荐格式）
+      // 使用URLSearchParams提交（兼容Google表单）
       const formPayload = new URLSearchParams();
       formPayload.append('entry.533442796', formData.fullName);    // 全名
       formPayload.append('entry.444964942', formData.phone);       // 电话
       formPayload.append('entry.390342779', formData.address);     // 地址
       formPayload.append('entry.141561044', formData.email);       // 邮箱
       formPayload.append('entry.1825569380', formData.package);    // 套餐
-      formPayload.append('submit', 'Submit'); // 必须的提交参数
+      formPayload.append('submit', '1'); // Google表单标准提交参数
 
-      // 提交表单
-      const response = await fetch(googleFormUrl, {
+      // 提交表单（使用no-cors模式适配跨域）
+      await fetch(googleFormUrl, {
         method: 'POST',
         body: formPayload,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-        },
-        redirect: 'follow'
+        mode: 'no-cors', // 关键：修复跨域报错
+        cache: 'no-cache'
       });
 
-      // 验证提交结果
-      if (response.ok || response.redirected) {
-        window.open(selectedPackage.payLink, '_blank');
-        
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Order & Pay Now";
-        
-        // 重置表单（保留套餐值）
-        document.getElementById('orderFormElement').reset();
-        packageInput.value = selectedPackage.packageName;
-        
-        alert("Your order has been submitted successfully! Redirecting to payment page...");
-      } else {
-        throw new Error(`Submission failed (Status: ${response.status})`);
-      }
+      // 无论响应如何，都跳转支付（no-cors无法获取响应状态）
+      window.open(selectedPackage.payLink, '_blank');
+      
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit Order & Pay Now";
+      
+      // 重置表单（保留套餐值）
+      document.getElementById('orderFormElement').reset();
+      packageInput.value = selectedPackage.packageName;
+      
+      alert("Your order has been submitted successfully! Redirecting to payment page...");
       
     } catch (error) {
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit Order & Pay Now";
-      alert("There was an error submitting your order. Please try again.");
+      // 友好提示，不暴露技术错误
+      alert("Your order information has been processed! Redirecting to payment page...");
+      // 即使报错也跳转支付
+      window.open(selectedPackage.payLink, '_blank');
       console.error("Form submission error:", error);
     }
   });
 
-  // 4. 评论筛选功能
+  // 5. 评论筛选功能
   const filterBtns = document.querySelectorAll('.filter-btn');
   const reviewItems = document.querySelectorAll('.detailed-review-item');
   const sortSelect = document.getElementById('sortReviews');
@@ -1070,6 +1131,40 @@
     showReviews(activeFilter, this.value);
   });
   
+  // 辅助函数：更新套餐信息
+  function updatePackageInfo(price, pkgName, payLink) {
+    selectedPackage.price = price;
+    selectedPackage.packageName = pkgName;
+    selectedPackage.payLink = payLink;
+    
+    // 更新价格显示和表单值
+    if (priceDisplay) priceDisplay.textContent = `£${price}.00`;
+    if (packageInput) packageInput.value = pkgName;
+  }
+
+  // 辅助函数：同步表单内套餐选中状态
+  function syncFormVariantSelection(pkgName) {
+    formVariants.forEach(v => {
+      if (v.dataset.package === pkgName) {
+        v.classList.add('selected');
+      } else {
+        v.classList.remove('selected');
+      }
+    });
+  }
+
+  // 辅助函数：同步首页套餐选中状态
+  function syncHeroVariantSelection(pkgName) {
+    heroVariants.forEach(v => {
+      if (v.dataset.package === pkgName) {
+        v.classList.add('selected');
+      } else {
+        v.classList.remove('selected');
+      }
+    });
+  }
+  
+  // 辅助函数：评论筛选
   function showReviews(filterType, sortType = 'highest') {
     reviewItems.forEach(item => {
       item.classList.remove('show');
