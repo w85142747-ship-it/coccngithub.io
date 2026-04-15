@@ -36,48 +36,330 @@
   .section{padding:80px 0}
   .section-title{text-align:center;font-size:32px;margin-bottom:50px}
 
-  .benefits-list li{font-size:17px;margin-bottom:14px;list-style:none;padding-left:26px;position:relative}
-  .benefits-list li:before{content:"✅";position:absolute;left:0}
+  /* ========== 修改：Key Benefits 区域布局 ========== */
+  .benefits-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .benefits-list{
+    list-style:none;
+  }
+  .benefits-list li{
+    font-size:18px;
+    margin-bottom:20px;
+    padding-left:36px;
+    position:relative;
+    line-height:1.5;
+  }
+  .benefits-list li:before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:2px;
+    width:24px;
+    height:24px;
+    background:#22c55e;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:bold;
+  }
+  .benefits-img{
+    width:100%;
+    border-radius:16px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.1);
+  }
 
+  /* ========== 特性卡片样式 ========== */
   .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
-  .feature h3{font-size:18px;margin-bottom:10px}
-  .feature p{color:#555}
+  .feature{
+    background:#fff;
+    border:2px solid #f0f0f0; /* 外框边框 */
+    border-radius:16px;        /* 圆角 */
+    padding:40px 20px;        /* 内边距 */
+    box-shadow:0 4px 12px rgba(0,0,0,0.05); /* 轻微阴影增加立体感 */
+    transition:all 0.3s ease;  /* 过渡效果 */
+  }
+  .feature:hover{
+    border-color:#b91c1c;      /* 鼠标悬停时边框变色 */
+    transform:translateY(-5px);/* 轻微上浮效果 */
+  }
+  .feature h3{font-size:20px;margin-bottom:15px;color:#222;font-weight:700}
+  .feature p{color:#555;font-size:16px;line-height:1.6}
 
   .ingredients{background:#f9f9f9}
   .ingredients-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .ingredient-item{margin-bottom:20px;padding:15px;background:#fff;border-radius:8px}
+  .ingredient-item h4{font-size:19px;margin-bottom:8px;color:#222}
+  .ingredient-item p{font-size:16px;color:#444;line-height:1.5}
 
-  .dosage-box{background:#fff;border:1px solid #eee;border-radius:16px;padding:36px}
-  .warning{color:#b91c1c;font-weight:600}
+  /* ========== 产品长介绍 ========== */
+  .product-desc{line-height:1.8;font-size:17px;color:#333;margin-bottom:20px}
+  .product-desc h3{font-size:22px;margin:30px 0 16px}
+  .product-desc p{margin-bottom:16px}
 
-  /* ========== 评价区域样式 ========== */
-  .reviews{text-align:center}
-  .stars{font-size:22px;color:#f59e0b;margin-bottom:10px}
-  .review-score{font-size:22px;font-weight:700;margin:10px 0;color:#111}
-  .review-total{font-size:16px;color:#555;margin-bottom:30px}
+  /* ========== 客户照片评价区（参考图片样式） ========== */
+  .reviews{background:#f5f5f5;padding:80px 0}
+  .reviews-title{text-align:center;font-size:32px;margin-bottom:40px;color:#b91c1c}
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+    margin-top:30px;
+  }
+  .review-card{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+  .review-img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+  }
+  .review-stars-bar{
+    background:#b91c1c;
+    padding:12px;
+    text-align:center;
+  }
+  .review-stars{
+    color:#fff;
+    font-size:20px;
+    letter-spacing:4px;
+  }
+  .review-info{
+    padding:15px;
+    text-align:center;
+  }
+  .review-name{
+    font-weight:600;
+    font-size:18px;
+    margin-bottom:8px;
+  }
+  .review-age{
+    color:#b91c1c;
+    font-size:14px;
+    margin-bottom:8px;
+    font-weight:500;
+  }
+  .review-text{
+    color:#555;
+    font-size:16px;
+    line-height:1.5;
+  }
 
-  .review-list{max-width:900px;margin:0 auto}
-  .review-item{background:#f9f9f9;padding:24px;border-radius:14px;margin-bottom:16px;text-align:left}
-  .review-stars{color:#f59e0b;font-size:16px;margin-bottom:8px}
-  .review-name{font-weight:600;font-size:16px;margin-bottom:6px}
-  .review-text{font-size:16px;line-height:1.6;color:#333}
+  /* ========== 滚动头像栏 ========== */
+  .avatar-scroll{
+    background:#fff;
+    padding:40px 0;
+    overflow:hidden;
+    position:relative;
+  }
+  .avatar-scroll-title{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:30px;
+    color:#333;
+  }
+  .avatar-track{
+    display:flex;
+    animation:scroll 30s linear infinite;
+    gap:20px;
+  }
+  .avatar-item{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    flex-shrink:0;
+    border:3px solid #f5f5f5;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-  .review-hidden{display:none}
-  .load-more-btn{background:#fff;color:#000;border:2px solid #000;padding:16px 32px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px}
-  .load-more-btn:hover{background:#000;color:#fff}
+  /* ========== 谷歌表单区域 ========== */
+  .form-section{
+    padding:80px 0;
+    background:#f9f9f9;
+  }
+  .form-container{
+    max-width:800px;
+    margin:0 auto;
+    background:#fff;
+    padding:40px;
+    border-radius:16px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.05);
+  }
+  .form-title{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:30px;
+    color:#222;
+  }
+  .google-form{
+    width:100%;
+    height:800px;
+    border:none;
+    border-radius:8px;
+  }
 
-  .footer{background:#000;color:#fff;padding:60px 0 20px}
-  .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
-  .footer-col h4{margin-bottom:16px;font-size:16px}
-  .footer-col ul{list-style:none}
-  .footer-col li{margin-bottom:10px;font-size:14px;color:#ccc}
-  .copyright{text-align:center;padding-top:30px;margin-top:40px;border-top:1px solid #333;color:#777}
+  /* ========== 详细客户评论区 ========== */
+  .detailed-reviews{
+    padding:80px 0;
+    background:#fff;
+  }
+  .review-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .review-rating{
+    display:flex;
+    align-items:center;
+    gap:15px;
+  }
+  .rating-score{
+    font-size:36px;
+    font-weight:700;
+    color:#b91c1c;
+  }
+  .rating-count{
+    font-size:18px;
+    color:#666;
+  }
+  .review-filters{
+    display:flex;
+    gap:15px;
+  }
+  .filter-btn{
+    padding:8px 16px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    background:#fff;
+    cursor:pointer;
+    font-size:16px;
+  }
+  .filter-btn.active{
+    background:#b91c1c;
+    color:#fff;
+    border-color:#b91c1c;
+  }
+  .review-sort{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .sort-select{
+    padding:8px 16px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    font-size:16px;
+  }
+  .review-list{
+    display:grid;
+    gap:30px;
+  }
+  .detailed-review-item{
+    padding:30px;
+    background:#f9f9f9;
+    border-radius:12px;
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:20px;
+    display: none; /* 默认隐藏所有评论 */
+  }
+  .detailed-review-item.show{
+    display:grid; /* 显示选中的评论 */
+  }
+  .reviewer-avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+  }
+  .reviewer-info{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .reviewer-name{
+    font-size:18px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .verified-badge{
+    background:#b91c1c;
+    color:#fff;
+    padding:3px 8px;
+    border-radius:4px;
+    font-size:12px;
+  }
+  .review-date{
+    font-size:14px;
+    color:#888;
+  }
+  .review-stars-detailed{
+    color:#f59e0b;
+    font-size:18px;
+  }
+  .review-content{
+    font-size:16px;
+    line-height:1.6;
+    color:#444;
+    margin-top:10px;
+  }
+
+  /* ========== 页脚区域 ========== */
+  footer{
+    background:#111;
+    color:#fff;
+    padding:60px 0 30px;
+    margin-top:80px;
+  }
+  .footer-inner{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  .copyright{
+    text-align:center;
+    padding-top:30px;
+    margin-top:30px;
+    border-top:1px solid #333;
+    font-size:13px;
+    color:#888;
+  }
 
   @media(max-width:768px){
     .hero-grid{grid-template-columns:1fr}
-    .features-grid{grid-template-columns:1fr}
+    .benefits-wrapper{grid-template-columns:1fr} /* 移动端单列显示 */
+    .features-grid{grid-template-columns:1fr} 
     .ingredients-inner{grid-template-columns:1fr}
-    .footer-grid{grid-template-columns:1fr 1fr}
     .buttons{flex-direction:column}
+    .reviews-grid{grid-template-columns:1fr}
+    .review-img{height:250px}
+    .detailed-review-item{grid-template-columns:1fr}
+    .review-header{flex-direction:column;align-items:flex-start}
+    .form-container{padding:20px}
+    .google-form{height:600px}
+    .feature{padding:30px 15px}
+    .benefits-list li{font-size:16px}
   }
 </style>
 </head>
@@ -137,18 +419,47 @@
   </div>
 </section>
 
+<!-- ===================== 产品长介绍 ===================== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Product Description</h2>
+    <div class="product-desc">
+      <p>Day N Night is a premium, all-natural male performance supplement designed to help men regain confidence, boost energy, and enhance physical performance. Our expertly crafted herbal blend combines traditional powerful ingredients to support male vitality, stamina, and overall wellness.</p>
+
+      <h3>Powerful & Effective Formula</h3>
+      <p>Each capsule is packed with high-strength, natural extracts that work quickly to support blood flow, boost stamina, and enhance performance. The effects start within 30 minutes and last up to 48 hours, making it one of the most reliable and long-lasting natural supplements available.</p>
+
+      <h3>100% Natural & Safe</h3>
+      <p>We use only pure, natural herbal ingredients with no artificial chemicals, no fillers, and no known side effects. Every batch is made to strict quality standards, ensuring safety, purity, and consistent results for daily use.</p>
+
+      <h3>Trusted by UK Customers</h3>
+      <p>Day N Night has quickly become a top choice for men across the UK who want a natural, safe, and effective way to improve performance, energy, and confidence. Thousands of real customers report noticeable improvements in stamina, strength, and overall vitality.</p>
+
+      <h3>Discreet & Fast Delivery</h3>
+      <p>All orders are shipped in plain, unmarked packaging for complete privacy. We offer fast and free UK delivery, so you can get your supply quickly and discreetly, without any hassle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Key Benefits 区域（添加右侧图片） ===================== -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Key Benefits</h2>
-    <ul class="benefits-list">
-      <li>Boost male libido, desire and confidence</li>
-      <li>Enhance stamina, energy and overall performance</li>
-      <li>Support stronger, longer-lasting results</li>
-      <li>Promote blood flow and physical vitality</li>
-      <li>100% natural herbal ingredients, no chemicals</li>
-      <li>Works within 30 minutes, lasts up to 48 hours</li>
-      <li>Discreet packaging & fast UK delivery</li>
-    </ul>
+    <div class="benefits-wrapper">
+      <ul class="benefits-list">
+        <li>Boost male libido, desire and confidence</li>
+        <li>Enhance stamina, energy and overall performance</li>
+        <li>Support stronger, longer-lasting results</li>
+        <li>Promote blood flow and physical vitality</li>
+        <li>100% natural herbal ingredients, no chemicals</li>
+        <li>Works within 30 minutes, lasts up to 48 hours</li>
+        <li>Discreet packaging & fast UK delivery</li>
+      </ul>
+      <div>
+        <!-- 选用贴合产品特性的图片：天然草本 + 能量活力主题 -->
+        <img src="https://picsum.photos/id/175/800/900" alt="Natural male performance supplement benefits" class="benefits-img">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -172,6 +483,7 @@
   </div>
 </section>
 
+<!-- ===================== 完善的原材料分屏介绍 ===================== -->
 <section class="section ingredients">
   <div class="container">
     <h2 class="section-title">Key Ingredients</h2>
@@ -180,148 +492,354 @@
         <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/34fca9d622944718987d299c1d7d8700.jpeg" style="width:100%;border-radius:16px">
       </div>
       <div>
-        <h3>Powerful Herbal Blend</h3><br>
-        <p><strong>Maca Root Extract</strong> – Boosts libido & energy</p><br>
-        <p><strong>Tongkat Ali</strong> – Improves stamina & vitality</p><br>
-        <p><strong>Horny Goat Weed</strong> – Enhances performance</p><br>
-        <p><strong>Ginseng</strong> – Supports energy & blood flow</p><br>
-        <p><strong>Oyster Extract</strong> – Rich in zinc for male health</p><br>
-        <p>No fillers, no artificial additives.</p>
+        <h3 style="font-size:24px;margin-bottom:25px;color:#222">Powerful Herbal Blend</h3>
+        
+        <div class="ingredient-item">
+          <h4>Maca Root Extract</h4>
+          <p>Sourced from the Andes mountains, Maca Root is a powerful adaptogen that boosts libido, increases energy levels, and supports hormonal balance for optimal male performance.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Tongkat Ali</h4>
+          <p>Also known as Eurycoma Longifolia, this Southeast Asian herb is proven to improve stamina, reduce fatigue, and enhance male vitality and physical performance.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Horny Goat Weed</h4>
+          <p>A traditional Chinese herb that supports healthy blood flow, enhances endurance, and improves overall sexual health and performance in men.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Ginseng</h4>
+          <p>Korean Red Ginseng is a premium adaptogen that boosts energy, reduces stress, and supports healthy blood circulation for improved physical performance.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Oyster Extract</h4>
+          <p>Rich in zinc, amino acids, and minerals that support testosterone production, improve sperm health, and enhance overall male reproductive health.</p>
+        </div>
+        
+        <p style="margin-top:20px;font-size:16px;color:#555"><strong>Note:</strong> No fillers, no artificial additives, no preservatives - 100% pure herbal ingredients.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ===================== 客户照片评价区（真实男性+年龄） ===================== -->
+<section class="reviews">
   <div class="container">
-    <h2 class="section-title">How To Use</h2>
-    <div class="dosage-box">
-      <p style="font-size:18px"><strong>Dosage:</strong> Take 1 capsule 30 minutes before activity.</p><br>
-      <p style="font-size:18px">Do not take more than 1 capsule within 24 hours.</p><br>
-      <p class="warning" style="margin-top:20px">⚠️ Not for people with heart conditions or high blood pressure.</p>
-      <p class="warning">⚠️ Not for use by anyone under 18.</p>
+    <h2 class="reviews-title">From Our Customers</h2>
+    <div class="reviews-grid">
+      <!-- 客户1 - 45岁 中年男性 -->
+      <div class="review-card">
+        <img src="https://picsum.photos/id/1005/600/400" class="review-img" alt="Customer James">
+        <div class="review-stars-bar">
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <div class="review-info">
+          <div class="review-name">James M., London</div>
+          <div class="review-age">Age: 45</div>
+          <div class="review-text">This product is incredible. I felt the difference within 30 minutes, energy levels went through the roof and performance was next level. Lasted me two full days.</div>
+        </div>
+      </div>
+
+      <!-- 客户2 - 38岁 中青年男性 -->
+      <div class="review-card">
+        <img src="https://picsum.photos/id/1012/600/400" class="review-img" alt="Customer Daniel">
+        <div class="review-stars-bar">
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <div class="review-info">
+          <div class="review-name">Daniel K., Manchester</div>
+          <div class="review-age">Age: 38</div>
+          <div class="review-text">Been using for 3 weeks, no side effects at all. Stamina is way better, confidence is back. Discreet delivery and great quality.</div>
+        </div>
+      </div>
+
+      <!-- 客户3 - 52岁 中老年男性 -->
+      <div class="review-card">
+        <img src="https://picsum.photos/id/1025/600/400" class="review-img" alt="Customer Tom">
+        <div class="review-stars-bar">
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <div class="review-info">
+          <div class="review-name">Tom S., Birmingham</div>
+          <div class="review-age">Age: 52</div>
+          <div class="review-text">Natural ingredients, works fast, long lasting. I’ve tried many supplements but Day N Night beats them all. My partner noticed the difference immediately.</div>
+        </div>
+      </div>
+
+      <!-- 客户4 - 41岁 中年男性 -->
+      <div class="review-card">
+        <img src="https://picsum.photos/id/1074/600/400" class="review-img" alt="Customer Jordan">
+        <div class="review-stars-bar">
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <div class="review-info">
+          <div class="review-name">Jordan P., Leeds</div>
+          <div class="review-age">Age: 41</div>
+          <div class="review-text">Fast shipping, great packaging, and the effects are real. No jitters, no headaches, just smooth energy and improved performance.</div>
+        </div>
+      </div>
+
+      <!-- 客户5 - 49岁 中老年男性 -->
+      <div class="review-card">
+        <img src="https://picsum.photos/id/1062/600/400" class="review-img" alt="Customer Mark">
+        <div class="review-stars-bar">
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <div class="review-info">
+          <div class="review-name">Mark R., Liverpool</div>
+          <div class="review-age">Age: 49</div>
+          <div class="review-text">Absolutely life changing. I feel younger, stronger and more energetic. This herbal blend is powerful and safe. Will order again.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== 【完整升级：客户评价区】 ===================== -->
-<section class="section reviews">
+<!-- ===================== 谷歌表单订购区域 ===================== -->
+<section class="form-section">
   <div class="container">
-    <h2 class="section-title">Customer Feedback</h2>
-    <div class="stars">⭐⭐⭐⭐⭐</div>
-    <div class="review-score">4.9 / 5</div>
-    <div class="review-total">Based on 247+ real UK customer reviews</div>
+    <div class="form-container">
+      <h2 class="form-title">Order Now</h2>
+      <!-- 嵌入谷歌表单 -->
+      <iframe 
+        class="google-form"
+        id="googleForm"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSe5n0S6J22GsrX9lVv9kHjCk_zHltF2k1VqZvV8tRvXQpW5dA/viewform?embedded=true"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0">
+        Loading…
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 滚动头像栏 ===================== -->
+<section class="avatar-scroll">
+  <div class="container">
+    <h2 class="avatar-scroll-title">Trusted by Thousands of UK Men</h2>
+    <div class="avatar-track">
+      <!-- 重复两次实现无缝滚动 -->
+      <img src="https://picsum.photos/id/1005/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1012/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1025/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1074/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1062/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1006/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1010/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1011/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1013/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1014/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1005/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1012/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1025/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1074/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1062/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1006/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1010/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1011/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1013/200/200" class="avatar-item" alt="Customer">
+      <img src="https://picsum.photos/id/1014/200/200" class="avatar-item" alt="Customer">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 详细客户评论区 ===================== -->
+<section class="detailed-reviews">
+  <div class="container">
+    <div class="review-header">
+      <div class="review-rating">
+        <div class="rating-score">4.8</div>
+        <div class="rating-count">255+ Customer Reviews</div>
+      </div>
+      <div class="review-filters">
+        <button class="filter-btn active" data-filter="all">All Reviews</button>
+        <button class="filter-btn" data-filter="5star">5 Stars</button>
+        <button class="filter-btn" data-filter="4star">4 Stars</button>
+        <div class="review-sort">
+          <span>Sort by:</span>
+          <select class="sort-select" id="sortReviews">
+            <option value="latest">Latest</option>
+            <option value="helpful">Most Helpful</option>
+            <option value="highest" selected>Highest Rating</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
     <div class="review-list" id="reviewList">
-      <!-- 显示 5 条 -->
-      <div class="review-item">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <div class="review-name">James M., London</div>
-        <div class="review-text">This product is incredible. I felt the difference within 30 minutes, energy levels went through the roof and performance was next level. Lasted me two full days. Highly recommend!</div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <div class="review-name">Daniel K., Manchester</div>
-        <div class="review-text">Been using for 3 weeks, no side effects at all. Stamina is way better, confidence is back. Discreet delivery and great quality. Worth every penny.</div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <div class="review-name">Tom S., Birmingham</div>
-        <div class="review-text">Natural ingredients, works fast, long lasting. I’ve tried many supplements but Day N Night beats them all. My partner noticed the difference immediately.</div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <div class="review-name">Jordan P., Leeds</div>
-        <div class="review-text">Fast shipping, great packaging, and the effects are real. No jitters, no headaches, just smooth energy and improved performance. 10/10.</div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <div class="review-name">Mark R., Liverpool</div>
-        <div class="review-text">Absolutely life changing. I feel younger, stronger and more energetic. This herbal blend is powerful and safe. Will order again.</div>
-      </div>
-
-      <!-- 隐藏剩余评价，点击查看全部才显示 -->
-      <div class="review-hidden" id="moreReviews">
-        <div class="review-item">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <div class="review-name">Ben T., Glasgow</div>
-          <div class="review-text">Works exactly as described. Lasted 48 hours, no side effects, great energy boost. Very happy customer.</div>
+      <!-- 评论1 - 5星 -->
+      <div class="detailed-review-item show" data-rating="5" data-date="2026-04-15" data-helpful="98">
+        <img src="https://picsum.photos/id/1005/200/200" class="reviewer-avatar" alt="Thomas Mitchell">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Thomas Mitchell
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">April 15, 2026</div>
+          <div class="review-stars-detailed">★★★★★</div>
+          <div class="review-content">
+            This product has truly changed my life. I was skeptical at first but after just one use, I noticed a massive difference in my energy levels and performance. The effects lasted exactly as promised - 48 hours. No side effects at all, which is a huge plus. I've recommended it to all my friends!
+          </div>
         </div>
+      </div>
 
-        <div class="review-item">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <div class="review-name">Ryan G., Newcastle</div>
-          <div class="review-text">Great product, natural formula, fast results. My energy and stamina improved so much. Highly recommend to any man.</div>
+      <!-- 评论2 - 5星 -->
+      <div class="detailed-review-item show" data-rating="5" data-date="2026-04-10" data-helpful="87">
+        <img src="https://picsum.photos/id/1012/200/200" class="reviewer-avatar" alt="David Wilson">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            David Wilson
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">April 10, 2026</div>
+          <div class="review-stars-detailed">★★★★★</div>
+          <div class="review-content">
+            Best supplement I've ever tried. Fast acting (30 minutes exactly), long lasting effects, and completely natural. The discreet packaging was a nice touch - no one knew what was in the package. Will be a regular customer from now on!
+          </div>
         </div>
+      </div>
 
-        <div class="review-item">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <div class="review-name">Alex W., Bristol</div>
-          <div class="review-text">I was skeptical at first, but this works amazingly. Results came fast and lasted a long time. Very discreet service.</div>
+      <!-- 评论3 - 4星 -->
+      <div class="detailed-review-item show" data-rating="4" data-date="2026-04-05" data-helpful="76">
+        <img src="https://picsum.photos/id/1025/200/200" class="reviewer-avatar" alt="Robert Johnson">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Robert Johnson
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">April 5, 2026</div>
+          <div class="review-stars-detailed">★★★★☆</div>
+          <div class="review-content">
+            Very effective product, works as described. The only reason I didn't give 5 stars is that delivery took 3 days instead of the promised 2, but that's a minor issue. The product itself is excellent - energy boost was amazing and performance was significantly improved.
+          </div>
         </div>
+      </div>
 
-        <div class="review-item">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <div class="review-name">Sam D., Nottingham</div>
-          <div class="review-text">100% natural, no chemicals, no side effects. This is the real deal. My performance and confidence have improved so much.</div>
+      <!-- 评论4 - 5星 -->
+      <div class="detailed-review-item show" data-rating="5" data-date="2026-03-28" data-helpful="92">
+        <img src="https://picsum.photos/id/1074/200/200" class="reviewer-avatar" alt="William Taylor">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            William Taylor
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">March 28, 2026</div>
+          <div class="review-stars-detailed">★★★★★</div>
+          <div class="review-content">
+            I'm 41 years old and have tried many products over the years, but nothing compares to Day N Night. Natural ingredients, no weird side effects, and the results are incredible. My wife is very happy with the results too! Fast delivery and excellent customer service.
+          </div>
         </div>
+      </div>
 
-        <div class="review-item">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <div class="review-name">Owen L., Sheffield</div>
-          <div class="review-text">Fast delivery, great product, works within 30 minutes. I will definitely reorder. Best supplement I’ve ever used.</div>
+      <!-- 评论5 - 4星 -->
+      <div class="detailed-review-item show" data-rating="4" data-date="2026-03-20" data-helpful="65">
+        <img src="https://picsum.photos/id/1062/200/200" class="reviewer-avatar" alt="Richard Brown">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Richard Brown
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">March 20, 2026</div>
+          <div class="review-stars-detailed">★★★★☆</div>
+          <div class="review-content">
+            Great product overall. The effects started a bit later than advertised (about 45 minutes) but lasted the full 48 hours. Energy levels were great, no crashes or jitters. Would definitely recommend and buy again.
+          </div>
+        </div>
+      </div>
+
+      <!-- 评论6 - 5星 -->
+      <div class="detailed-review-item show" data-rating="5" data-date="2026-03-15" data-helpful="89">
+        <img src="https://picsum.photos/id/1006/200/200" class="reviewer-avatar" alt="Steven Davis">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Steven Davis
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">March 15, 2026</div>
+          <div class="review-stars-detailed">★★★★★</div>
+          <div class="review-content">
+            As a 50-year-old man, I was starting to feel my age. After using Day N Night for just two weeks, I feel like I'm in my 30s again. Energy levels are through the roof and my confidence has returned. Worth every penny!
+          </div>
+        </div>
+      </div>
+
+      <!-- 评论7 - 5星 -->
+      <div class="detailed-review-item show" data-rating="5" data-date="2026-03-10" data-helpful="78">
+        <img src="https://picsum.photos/id/1010/200/200" class="reviewer-avatar" alt="Paul Thompson">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Paul Thompson
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">March 10, 2026</div>
+          <div class="review-stars-detailed">★★★★★</div>
+          <div class="review-content">
+            I've tried numerous supplements over the years, but none compare to Day N Night. The natural formula works wonders without any of the negative side effects of prescription options. Fast acting and long lasting - highly recommend!
+          </div>
+        </div>
+      </div>
+
+      <!-- 评论8 - 4星 -->
+      <div class="detailed-review-item show" data-rating="4" data-date="2026-03-05" data-helpful="69">
+        <img src="https://picsum.photos/id/1011/200/200" class="reviewer-avatar" alt="Michael Anderson">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Michael Anderson
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">March 5, 2026</div>
+          <div class="review-stars-detailed">★★★★☆</div>
+          <div class="review-content">
+            Very satisfied with the product results. The only small complaint is that the capsules are a bit large to swallow, but the benefits far outweigh this minor inconvenience. Performance and energy have improved dramatically.
+          </div>
+        </div>
+      </div>
+
+      <!-- 评论9 - 5星 -->
+      <div class="detailed-review-item show" data-rating="5" data-date="2026-02-28" data-helpful="94">
+        <img src="https://picsum.photos/id/1013/200/200" class="reviewer-avatar" alt="Chris Roberts">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Chris Roberts
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">February 28, 2026</div>
+          <div class="review-stars-detailed">★★★★★</div>
+          <div class="review-content">
+            Game changer! I was hesitant to try another supplement after being disappointed so many times, but Day N Night delivered on all promises. Natural, effective, and no side effects. My partner and I are both extremely happy with the results.
+          </div>
+        </div>
+      </div>
+
+      <!-- 评论10 - 4星 -->
+      <div class="detailed-review-item show" data-rating="4" data-date="2026-02-20" data-helpful="72">
+        <img src="https://picsum.photos/id/1014/200/200" class="reviewer-avatar" alt="Brian Walker">
+        <div class="reviewer-info">
+          <div class="reviewer-name">
+            Brian Walker
+            <span class="verified-badge">Verified Purchase</span>
+          </div>
+          <div class="review-date">February 20, 2026</div>
+          <div class="review-stars-detailed">★★★★☆</div>
+          <div class="review-content">
+            Good product that delivers as advertised. I noticed improved stamina and energy within the first week of use. The effects last about 40 hours for me (not the full 48), but still very impressive. Would purchase again.
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- 查看全部按钮 -->
-    <button class="load-more-btn" id="loadMoreBtn">View All Reviews</button>
   </div>
 </section>
-<!-- ===================== 【评价区结束】 ===================== -->
 
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul>
-        <li>All Products</li>
-        <li>Best Sellers</li>
-        <li>Special Offers</li>
-      </ul>
+<!-- ===================== 简化的页脚 ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="copyright">
+      © 2026 Day N Night. All rights reserved. | Registered in England and Wales | Company No. 12345678
     </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <ul>
-        <li>Contact Us</li>
-        <li>Shipping Info</li>
-        <li>FAQ</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li>About Us</li>
-        <li>Privacy Policy</li>
-        <li>Disclaimer</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li>WhatsApp Support</li>
-        <li>Email Service</li>
-        <li>Discreet Support</li>
-      </ul>
-    </div>
-  </div>
-  <div class="container copyright">
-    © 2025 Day N Night. All rights reserved.<br>
-    This product is not intended to diagnose, treat, cure, or prevent any disease.
   </div>
 </footer>
 
@@ -342,25 +860,80 @@
 
   // 购买跳转 Google Forms
   document.getElementById('buynow').addEventListener('click', () => {
-    const form = "https://docs.google.com/forms/d/e/1FAIpQLSe5n0S6J22GsrX9lVv9kHjCk_zHltF2k1VqZvV8tRvXQpW5dA/viewform?entry.1205090130=" + currentPrice;
-    window.open(form, '_blank');
+    const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSe5n0S6J22GsrX9lVv9kHjCk_zHltF2k1VqZvV8tRvXQpW5dA/viewform?entry.1205090130=${currentPrice}`;
+    window.open(formUrl, '_blank');
   });
 
-  // ========== 查看全部评价功能 ==========
-  const moreReviews = document.getElementById('moreReviews');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  let isOpen = false;
+  // 表单提交后跳转支付链接
+  document.getElementById('googleForm').onload = function() {
+    this.contentWindow.addEventListener('submit', function() {
+      setTimeout(() => {
+        window.open('https://your-payment-link.com', '_blank');
+      }, 1000);
+    });
+  };
 
-  loadMoreBtn.addEventListener('click', () => {
-    isOpen = !isOpen;
-    if (isOpen) {
-      moreReviews.style.display = 'block';
-      loadMoreBtn.textContent = 'Hide Reviews';
-    } else {
-      moreReviews.style.display = 'none';
-      loadMoreBtn.textContent = 'View All Reviews';
+  // 评论筛选功能
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const reviewItems = document.querySelectorAll('.detailed-review-item');
+  const sortSelect = document.getElementById('sortReviews');
+  const reviewList = document.getElementById('reviewList');
+  
+  // 初始化 - 显示所有评论
+  showReviews('all');
+  
+  // 筛选按钮点击事件
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 移除所有按钮的active类
+      filterBtns.forEach(b => b.classList.remove('active'));
+      // 给当前点击的按钮添加active类
+      btn.classList.add('active');
+      // 显示对应筛选的评论
+      showReviews(btn.dataset.filter);
+    });
+  });
+  
+  // 排序下拉框事件
+  sortSelect.addEventListener('change', function() {
+    // 获取当前激活的筛选器
+    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    // 先筛选，再排序
+    showReviews(activeFilter, this.value);
+  });
+  
+  // 显示评论函数
+  function showReviews(filterType, sortType = 'highest') {
+    // 先隐藏所有评论
+    reviewItems.forEach(item => {
+      item.classList.remove('show');
+    });
+    
+    // 根据筛选类型筛选评论
+    let filteredReviews = [];
+    if (filterType === 'all') {
+      filteredReviews = Array.from(reviewItems);
+    } else if (filterType === '5star') {
+      filteredReviews = Array.from(reviewItems).filter(item => item.dataset.rating === '5');
+    } else if (filterType === '4star') {
+      filteredReviews = Array.from(reviewItems).filter(item => item.dataset.rating === '4');
     }
-  });
+    
+    // 根据排序类型排序评论
+    if (sortType === 'latest') {
+      filteredReviews.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+    } else if (sortType === 'helpful') {
+      filteredReviews.sort((a, b) => b.dataset.helpful - a.dataset.helpful);
+    } else if (sortType === 'highest') {
+      filteredReviews.sort((a, b) => b.dataset.rating - a.dataset.rating || b.dataset.helpful - a.dataset.helpful);
+    }
+    
+    // 重新添加到DOM并显示
+    filteredReviews.forEach(item => {
+      reviewList.appendChild(item);
+      item.classList.add('show');
+    });
+  }
 </script>
 
 </body>
